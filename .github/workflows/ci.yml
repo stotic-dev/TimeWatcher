@@ -4,6 +4,8 @@ on:
   pull_request:
     branches:
       - "*"
+  workflow_dispatch:
+
 env:
   DEVELOPER_DIR: /Applications/Xcode_15.0.app
   WORKSPACE_PATH: /TimerWatcherWorkspace.xcworkspace
