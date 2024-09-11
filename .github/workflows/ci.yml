@@ -1,0 +1,66 @@
+name: CI_Time_Watcher
+
+on:
+  pull_request:
+    branches:
+      - "*"
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app
+  WORKSPACE_PATH: /TimerWatcherWorkspace.xcworkspace
+  TARGET_SCHEME_NAME: TimeWatcher
+  TARGET_TEST_PLAN_NAME: TimeWatcher
+
+jobs:
+  build:
+    runs-on: macos-13
+
+    steps:
+      # チェックアウト(リポジトリからソースコードを取得)
+      - name: Check Out repository
+        uses: actions/checkout@v3
+
+      # Xcodeの一覧出力
+      - name: Show Xcode list
+        run: ls /Applications | grep 'Xcode'
+
+      # Xcodeのバージョン出力
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # Rudy製ライブラリのキャッシュ
+      - name: Cache Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      # Rudy製ライブラリのインストール
+      - name: Install Bundled Gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      # SPMのライブラリのキャッシュ
+      - name: Cache Swift Packages
+        uses: actions/cache@v2
+        with:
+          path: SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+      # ビルド
+      - name: Xcode virify
+        run: set -o pipefail &&
+          xcodebuild
+          -workspace ${WORKSPACE_PATH}
+          -scheme ${TARGET_SCHEME_NAME}
+          -testPlan ${TARGET_TEST_PLAN_NAME}
+          -sdk iphonesimulator
+          -configuration Debug
+          -destination "platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro"
+          -clonedSourcePackagesDirPath SourcePackages
+          -scmProvider xcode
+          -allowProvisioningUpdates
+          clean test |
+          bundle exec xcpretty
