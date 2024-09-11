@@ -60,7 +60,7 @@ jobs:
           -testPlan ${TARGET_TEST_PLAN_NAME}
           -sdk iphonesimulator
           -configuration Debug
-          -destination "platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro"
+          -destination "platform=iOS Simulator,OS=17.2,name=iPhone 15 Pro"
           -clonedSourcePackagesDirPath SourcePackages
           -scmProvider xcode
           -allowProvisioningUpdates
