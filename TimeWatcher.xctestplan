@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "E02FBD06-B638-4D31-84D3-77C0FD5D73C0",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:TimeWatcher.xcodeproj",
+      "identifier" : "BC3FCD602C913E2900F3AC29",
+      "name" : "TimeWatcher"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:TimeWatcher.xcodeproj",
+        "identifier" : "BC3FCD702C913E2B00F3AC29",
+        "name" : "TimeWatcherTests"
+      }
+    },
+    {
+      "enabled" : false,
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:TimeWatcher.xcodeproj",
+        "identifier" : "BC3FCD7A2C913E2B00F3AC29",
+        "name" : "TimeWatcherUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
