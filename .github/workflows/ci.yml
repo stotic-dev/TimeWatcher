@@ -64,5 +64,6 @@ jobs:
           -clonedSourcePackagesDirPath SourcePackages
           -scmProvider xcode
           -allowProvisioningUpdates
+          -skipPackagePluginValidation
           clean test |
           bundle exec xcpretty
