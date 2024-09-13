@@ -11,6 +11,7 @@ import XCTest
 
 final class MainTimerViewTest: XCTestCase {
     
+    // テスト開始時の基準の時間
     private var currentDate: Date {
         
         let formatter = DateFormatter()
@@ -27,6 +28,12 @@ final class MainTimerViewTest: XCTestCase {
         cancellables.removeAll()
     }
 
+    /// 開始ボタンの押下時の動作確認
+    ///
+    /// ## 確認ポイント
+    /// - 初回の経過時間の文字列が00:00:00.000となっていること
+    /// - 開始ボタン押下で時間計測が開始され経過時間の文字列が更新されること
+    /// - 開始ボタン押下前に時間経過しても、経過時間の文字列が更新されないこと
     @MainActor
     func testTappedStartWatch() throws {
                 
@@ -66,6 +73,12 @@ final class MainTimerViewTest: XCTestCase {
                                          expected: "99:59:09.999")
     }
     
+    /// 停止ボタンの押下時の動作確認
+    ///
+    /// ## 確認ポイント
+    /// - 停止中に時間経過しても表示時間に更新がないこと
+    /// - 停止後再度開始したら前回停止した時間から時間計測が始まること
+    /// - 最大表示可能経過時間が99:59:59.999までであること
     @MainActor
     func testTappedStopWatch() throws {
                 
@@ -142,6 +155,12 @@ final class MainTimerViewTest: XCTestCase {
                                          expected: "99:59:59.999")
     }
     
+    /// リセットボタンの押下時の動作確認
+    ///
+    /// ## 確認ポイント
+    /// - 開始ボタン押下 -> 停止ボタン投下 -> リセットボタン押下で経過時間が00:00:00.000となること
+    /// - リセット後再度開始したら00:00:00.000から時間計測が行われること
+    /// - リセット後に時間経過しても表示時間に更新がないこと
     @MainActor
     func testTappedResetWatch() throws {
                 
