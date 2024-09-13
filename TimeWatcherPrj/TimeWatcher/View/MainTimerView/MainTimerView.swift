@@ -95,6 +95,10 @@ private extension MainTimerView {
     }
 }
 
-#Preview {
+#Preview("通常時") {
     MainTimerView(viewModel: MainTimerViewModel())
+}
+
+#Preview("最大表示可能経過時間超過時") {
+    MainTimerView(viewModel: MainTimerViewModel(isOverMaxTime: true))
 }

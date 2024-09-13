@@ -14,6 +14,7 @@ extension Date {
         return self.timeIntervalSince1970 * 1000
     }
     
+    /// yyyy/mm/dd hh:mm:ss.sss形式で文字列変換
     func toStringDate() -> String {
         
         let formatter = DateFormatter()

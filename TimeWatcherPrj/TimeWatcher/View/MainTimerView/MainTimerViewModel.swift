@@ -22,12 +22,15 @@ class MainTimerViewModel: ObservableObject {
     private var maxDisplayTime: TimeInterval {
         
         let initialDate = Date(timeIntervalSince1970: .zero)
-        return Calendar.current.date(byAdding: .hour, value: 100, to: initialDate)?.timeIntervalSince1970 ?? .infinity
+        return Calendar.current.date(byAdding: .hour,
+                                     value: 100,
+                                     to: initialDate)?.timeIntervalSince1970 ?? .infinity
     }
     
     init(timeWatch: TimeWatch? = nil, isOverMaxTime: Bool = false) {
         
         self.timeWatch = timeWatch
+        self.isOverMaxTime = isOverMaxTime
         
         // テスト時以外はnilの状態なので、timeWatchの初期化を行う
         if self.timeWatch == nil {
@@ -41,12 +44,8 @@ class MainTimerViewModel: ObservableObject {
         self.timeWatch?.setTimerHandler { [weak self] timeLapse in
             
             guard let self else { return }
-            logger.debug("setTimerHandler timeLapse: \(timeLapse)")
-            self.currentTimeString = self.getTimeString(timeLapse)
-            self.isOverMaxTime = self.currentTimeString == maxDisplayTimeString
+            self.didReceiveTimeLapse(timeLapse)
         }
-        
-        self.isOverMaxTime = isOverMaxTime
     }
     
     /// タイマーのアクションボタン投下時の動作を、アクションタイプから決定して実行する
@@ -94,6 +93,15 @@ private extension MainTimerViewModel {
         timeWatch?.resetTimer()
     }
     
+    // 時間経過検知時の処理
+    func didReceiveTimeLapse(_ timeLapse: TimeInterval) {
+        
+        logger.debug("timeLapse: \(timeLapse)")
+        self.currentTimeString = self.getTimeString(timeLapse)
+        self.isOverMaxTime = self.currentTimeString == maxDisplayTimeString
+    }
+    
+    // タイムスタンプ(sec)から画面に表示する表示文字列を返す
     func getTimeString(_ timeLapse: TimeInterval) -> String {
         
         guard maxDisplayTime > timeLapse else {
