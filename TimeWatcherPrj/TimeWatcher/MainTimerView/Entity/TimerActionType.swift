@@ -35,4 +35,19 @@ extension TimerActionType {
             "Reset"
         }
     }
+    
+    var buttonIconName: String {
+        
+        switch self {
+            
+        case .start:
+            "play.fill"
+            
+        case .stop:
+            "pause.fill"
+            
+        case .reset:
+            "xmark"
+        }
+    }
 }
