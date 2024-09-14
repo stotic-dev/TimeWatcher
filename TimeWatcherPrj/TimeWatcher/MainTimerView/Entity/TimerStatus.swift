@@ -6,7 +6,7 @@
 //
 
 /// タイマーの動作状態
-enum TimerStatus {
+enum TimerStatus: Codable {
     
     /// 停止中(タイマーリセット済み)
     case initial
@@ -32,6 +32,19 @@ extension TimerStatus {
             
         case .start:
             [.reset, .stop]
+        }
+    }
+    
+    /// 経過時間計測中かどうか
+    var isPlaying: Bool {
+        
+        return switch self {
+            
+        case .initial, .stop:
+            false
+            
+        case .start:
+            true
         }
     }
 }
