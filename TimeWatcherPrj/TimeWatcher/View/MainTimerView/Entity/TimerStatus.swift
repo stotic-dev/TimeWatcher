@@ -47,4 +47,17 @@ extension TimerStatus {
             true
         }
     }
+    
+    /// 状態を表すアイコン名r
+    var icon: String {
+        
+        return switch self {
+            
+        case .initial, .stop:
+            "pause.fill"
+            
+        case .start:
+            "play.fill"
+        }
+    }
 }

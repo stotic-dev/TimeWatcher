@@ -15,14 +15,22 @@ struct TimeWatcherWidgetAttributes: ActivityAttributes {
     
     public struct ContentState: Codable, Hashable {
         
-        /// 経過時間のフル表示
+        /// 経過時間
+        var timeLapse: ClosedRange<Date>
+        /// 経過時間の文字列
         var timeLapseString: String
-        /// 経過時間の短尺表示
-        var timelapseShortString: String
-        /// 経過時間の1分単位の進捗
-        var timeLapseProgress: Double
         /// タイマーの状態
         var timerStatus: TimerStatus
+        
+        var useableActions: [TimerActionType] {
+            
+            return timerStatus.useableActions
+        }
+        
+        var statusIcon: String {
+            
+            return timerStatus.icon
+        }
     }
 }
 
@@ -35,7 +43,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
     private let liveActivityHorizontalPadding: CGFloat = 20
     private let actionButtonIconPadding: CGFloat = 15
     private let actionButtonSpacing: CGFloat = 10
-    private let shortTimeClockPadding: CGFloat = 4
+    private let shortTimeClockPadding: CGFloat = 6
     
     private let largeTimeLapseTextFontSize: CGFloat = 24
     private let shortTimeLapseTextFontSize: CGFloat = 14
@@ -44,6 +52,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
     private let shortTimeClockSize: CGFloat = 20
     private let actionButtonIconSize: CGFloat = 40
     private let shortTimeClockLineWidth: CGFloat = 2
+    private let expandedTextWidth: CGFloat = 65
     
     // MARK: live activity view body property
     
@@ -52,38 +61,38 @@ struct TimeWatcherWidgetLiveActivity: Widget {
             HStack(spacing: .zero) {
                 createActionButtonView(useableActions: context.state.timerStatus.useableActions)
                 Spacer()
-                Text(context.state.timeLapseString)
-                    .font(.system(size: largeTimeLapseTextFontSize, weight: .bold))
-                    .foregroundStyle(Color(CustomColor.timerTextColor))
+                createTimeLapseText(status: context.state.timerStatus,
+                                    timeLapseString: context.state.timeLapseString,
+                                    timerInterval: context.state.timeLapse,
+                                    fontSize: largeTimeLapseTextFontSize)
+                .frame(maxWidth: .infinity, alignment: .trailing)
             }
             .padding(.horizontal, liveActivityHorizontalPadding)
             .activityBackgroundTint(Color(CustomColor.primaryBackgroundColor))
             .activitySystemActionForegroundColor(Color(CustomColor.primaryForegroundColor))
         } dynamicIsland: { context in
-            DynamicIsland {
+            DynamicIsland { // MARK: Expanded View
                 DynamicIslandExpandedRegion(.leading) {
-                    createActionButtonView(useableActions: context.state.timerStatus.useableActions)
+                    createActionButtonView(useableActions: context.state.useableActions)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    TimerClockAnimationView(progress: context.state.timeLapseProgress,
-                                            size: largeTimeClockSize)
+                    createTimeLapseText(status: context.state.timerStatus,
+                                        timeLapseString: context.state.timeLapseString,
+                                        timerInterval: context.state.timeLapse,
+                                        fontSize: largeTimeLapseTextFontSize)
+                    .frame(maxHeight: .infinity)
                 }
-                DynamicIslandExpandedRegion(.bottom) {
-                    Text(context.state.timeLapseString)
-                        .font(.system(size: largeTimeLapseTextFontSize, weight: .bold))
-                        .foregroundStyle(Color(CustomColor.timerTextColor))
-                        .frame(maxHeight: .infinity)
-                }
-            } compactLeading: {
-                createMiniTimeClockView(context.state.timeLapseProgress)
+            } compactLeading: { // MARK: Compact View
+                createMiniStatusIconView(context.state.statusIcon)
             } compactTrailing: {
-                Text(context.state.timelapseShortString)
-                    .font(.system(size: shortTimeLapseTextFontSize, weight: .bold))
-                    .foregroundStyle(Color(CustomColor.timerTextColor))
-            } minimal: {
-                createMiniTimeClockView(context.state.timeLapseProgress)
+                createTimeLapseText(status: context.state.timerStatus,
+                                    timeLapseString: context.state.timeLapseString,
+                                    timerInterval: context.state.timeLapse,
+                                    fontSize: shortTimeLapseTextFontSize)
+                .frame(maxWidth: expandedTextWidth)
+            } minimal: { // MARK: Minimal View
+                createMiniStatusIconView(context.state.statusIcon)
             }
-            .widgetURL(URL(string: "http://www.apple.com"))
         }
     }
 }
@@ -110,12 +119,32 @@ private extension TimeWatcherWidgetLiveActivity {
         }
     }
     
-    func createMiniTimeClockView(_ progress: Double) -> some View {
-        TimerClockAnimationView(progress: progress,
-                                size: shortTimeClockSize,
-                                lineWidth: shortTimeClockLineWidth)
-        .padding(shortTimeClockPadding)
-        .frame(maxWidth: .infinity, alignment: .leading)
+    func createMiniStatusIconView(_ icon: String) -> some View {
+        Image(systemName: icon)
+            .resizable()
+            .padding(shortTimeClockPadding)
+            .frame(width: shortTimeClockSize, height: shortTimeClockSize)
+            .foregroundStyle(Color(CustomColor.timerActionForegroundColor))
+            .background(Color(CustomColor.timerActionBackgroundColor))
+            .clipShape(Circle())
+    }
+    
+    func createTimeLapseText(status: TimerStatus,
+                             timeLapseString: String,
+                             timerInterval: ClosedRange<Date>,
+                             fontSize: CGFloat) -> some View {
+        Group {
+            if status == .stop {
+                Text(timeLapseString)
+            }
+            else {
+                Text(timerInterval: timerInterval,
+                     countsDown: false,
+                     showsHours: true)
+            }
+        }
+        .font(.system(size: fontSize, weight: .bold))
+        .foregroundStyle(Color(CustomColor.timerTextColor))
     }
 }
 
@@ -131,23 +160,20 @@ extension TimeWatcherWidgetAttributes {
 extension TimeWatcherWidgetAttributes.ContentState {
     
     fileprivate static var initial: TimeWatcherWidgetAttributes.ContentState {
-        TimeWatcherWidgetAttributes.ContentState(timeLapseString: "00:00:00.000",
-                                                 timelapseShortString: "00:00:00",
-                                                 timeLapseProgress: 0.2,
-                                                 timerStatus: .initial)
-     }
+        return TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .hour, value: -12, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
+                                                        timeLapseString: "01:12:12",
+                                                        timerStatus: .initial)
+    }
      
      fileprivate static var start: TimeWatcherWidgetAttributes.ContentState {
-         TimeWatcherWidgetAttributes.ContentState(timeLapseString: "00:01:12.999",
-                                                  timelapseShortString: "00:01:12",
-                                                  timeLapseProgress: 0.5,
+         TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .minute, value: -12, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
+                                                  timeLapseString: "01:12:12",
                                                   timerStatus: .start)
      }
     
     fileprivate static var stop: TimeWatcherWidgetAttributes.ContentState {
-        TimeWatcherWidgetAttributes.ContentState(timeLapseString: "00:02:12.101",
-                                                 timelapseShortString: "00:02:12",
-                                                 timeLapseProgress: 1.4,
+        TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .second, value: -10, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
+                                                 timeLapseString: "01:12:12",
                                                  timerStatus: .stop)
     }
 }
