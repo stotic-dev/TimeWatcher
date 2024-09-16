@@ -26,6 +26,7 @@ class TimeWatch {
     
     /// 時間計測の間隔
     private static let timeWatchInterval = 0.001
+//    private static let timeWatchInterval: TimeInterval = 1
     
     /// - Parameters:
     ///    - publisher: 時間経過監視のPublisher
@@ -117,7 +118,6 @@ private extension TimeWatch {
             guard let self = self,
                   let startTime = self.startTime else { return }
             
-            logger.debug("receive time: \(date.toStringDate()), startDate: \(startTime.toStringDate())")
             // 経過時間を外部に連携
             self.timeLapseHandler?(date.timeIntervalSince(startTime) + (addedTime ?? .zero))
         }

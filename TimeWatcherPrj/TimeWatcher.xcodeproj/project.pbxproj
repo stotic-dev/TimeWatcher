@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC04009A2C949BD3003558DB /* FrameButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDA22C91527100F3AC29 /* FrameButtonStyle.swift */; };
 		BC057EB32C9280470030C275 /* MainTimerViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EB22C9280470030C275 /* MainTimerViewTest.swift */; };
 		BC057EB62C92EE0F0030C275 /* DateDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EB52C92EE0F0030C275 /* DateDependency.swift */; };
-		BC04009A2C949BD3003558DB /* FrameButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDA22C91527100F3AC29 /* FrameButtonStyle.swift */; };
 		BC057EBD2C94758F0030C275 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC057EBC2C94758F0030C275 /* WidgetKit.framework */; };
 		BC057EBF2C94758F0030C275 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC057EBE2C94758F0030C275 /* SwiftUI.framework */; };
 		BC057EC22C94758F0030C275 /* TimeWatcherWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EC12C94758F0030C275 /* TimeWatcherWidgetBundle.swift */; };
@@ -29,15 +29,20 @@
 		BC3FCD9F2C914E2900F3AC29 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
 		BC3FCDA12C91507900F3AC29 /* Asset.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC3FCDA02C91507900F3AC29 /* Asset.xcassets */; };
 		BC3FCDA32C91527100F3AC29 /* FrameButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDA22C91527100F3AC29 /* FrameButtonStyle.swift */; };
-		BC3FCDA82C915EDF00F3AC29 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDA72C915EDF00F3AC29 /* ViewModifier.swift */; };
+		BC3FCDAC2C918A4300F3AC29 /* TimeWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAB2C918A4300F3AC29 /* TimeWatch.swift */; };
+		BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */; };
+		BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDB22C91DF8800F3AC29 /* Logger.swift */; };
+		BC4B66302C955B1B004C3EEF /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B662F2C955B1B004C3EEF /* LiveActivityManager.swift */; };
+		BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */; };
+		BC4B66332C959A72004C3EEF /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */; };
+		BC4B66352C95AF0F004C3EEF /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */; };
+		BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */; };
+		BC57C0D02C96A16000786503 /* LiveActivityManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */; };
 		BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD922C91429900F3AC29 /* TimerStatus.swift */; };
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
-		BC3FCDAC2C918A4300F3AC29 /* TimeWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAB2C918A4300F3AC29 /* TimeWatch.swift */; };
-		BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */; };
-		BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDB22C91DF8800F3AC29 /* Logger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BC057EB22C9280470030C275 /* MainTimerViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimerViewTest.swift; sourceTree = "<group>"; };
+		BC057EB52C92EE0F0030C275 /* DateDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDependency.swift; sourceTree = "<group>"; };
 		BC057EBB2C94758F0030C275 /* TimeWatcherWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TimeWatcherWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC057EBC2C94758F0030C275 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		BC057EBE2C94758F0030C275 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -86,8 +93,6 @@
 		BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWatcherWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		BC057EC72C9475930030C275 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC057EC92C9475930030C275 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC057EB22C9280470030C275 /* MainTimerViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimerViewTest.swift; sourceTree = "<group>"; };
-		BC057EB52C92EE0F0030C275 /* DateDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateDependency.swift; sourceTree = "<group>"; };
 		BC3FCD612C913E2900F3AC29 /* TimeWatcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeWatcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC3FCD642C913E2900F3AC29 /* TimeWatcherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWatcherApp.swift; sourceTree = "<group>"; };
 		BC3FCD662C913E2900F3AC29 /* MainTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTimerView.swift; sourceTree = "<group>"; };
@@ -102,11 +107,15 @@
 		BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceAdapt.swift; sourceTree = "<group>"; };
 		BC3FCDA02C91507900F3AC29 /* Asset.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Asset.xcassets; sourceTree = "<group>"; };
 		BC3FCDA22C91527100F3AC29 /* FrameButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameButtonStyle.swift; sourceTree = "<group>"; };
-		BC3FCDA72C915EDF00F3AC29 /* ViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
-		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 		BC3FCDAB2C918A4300F3AC29 /* TimeWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWatch.swift; sourceTree = "<group>"; };
 		BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BC3FCDB22C91DF8800F3AC29 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		BC4B662F2C955B1B004C3EEF /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
+		BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
+		BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManagerMock.swift; sourceTree = "<group>"; };
+		BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManaging.swift; sourceTree = "<group>"; };
+		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,17 +154,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BC057EC02C94758F0030C275 /* TimeWatcherWidget */ = {
-			isa = PBXGroup;
-			children = (
-				BC057EC12C94758F0030C275 /* TimeWatcherWidgetBundle.swift */,
-				BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */,
-				BC057EC72C9475930030C275 /* Assets.xcassets */,
-				BC057EC92C9475930030C275 /* Info.plist */,
-			);
-			path = TimeWatcherWidget;
-			sourceTree = "<group>";
-		};
 		BC057EB12C92801B0030C275 /* MainTimerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +168,17 @@
 				BC057EB52C92EE0F0030C275 /* DateDependency.swift */,
 			);
 			path = Dependency;
+			sourceTree = "<group>";
+		};
+		BC057EC02C94758F0030C275 /* TimeWatcherWidget */ = {
+			isa = PBXGroup;
+			children = (
+				BC057EC12C94758F0030C275 /* TimeWatcherWidgetBundle.swift */,
+				BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */,
+				BC057EC72C9475930030C275 /* Assets.xcassets */,
+				BC057EC92C9475930030C275 /* Info.plist */,
+			);
+			path = TimeWatcherWidget;
 			sourceTree = "<group>";
 		};
 		BC3FCD582C913E2900F3AC29 = {
@@ -239,7 +248,6 @@
 				BC3FCD912C91428900F3AC29 /* Entity */,
 				BC3FCD662C913E2900F3AC29 /* MainTimerView.swift */,
 				BC3FCD8F2C91408A00F3AC29 /* MainTimerViewModel.swift */,
-				BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */,
 			);
 			path = MainTimerView;
 			sourceTree = "<group>";
@@ -284,6 +292,7 @@
 		BC3FCDA92C9189BA00F3AC29 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BC4B662E2C955A40004C3EEF /* ViewParts */,
 				BC3FCD642C913E2900F3AC29 /* TimeWatcherApp.swift */,
 				BC3FCD8E2C913FCE00F3AC29 /* MainTimerView */,
 			);
@@ -293,6 +302,7 @@
 		BC3FCDAA2C9189CE00F3AC29 /* AppModel */ = {
 			isa = PBXGroup;
 			children = (
+				BC57C0CD2C96A0D700786503 /* LiviActivity */,
 				BC3FCDAB2C918A4300F3AC29 /* TimeWatch.swift */,
 			);
 			path = AppModel;
@@ -310,6 +320,8 @@
 			isa = PBXGroup;
 			children = (
 				BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */,
+				BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */,
+				BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -320,6 +332,24 @@
 				BC3FCDB22C91DF8800F3AC29 /* Logger.swift */,
 			);
 			path = Logger;
+			sourceTree = "<group>";
+		};
+		BC4B662E2C955A40004C3EEF /* ViewParts */ = {
+			isa = PBXGroup;
+			children = (
+				BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */,
+			);
+			path = ViewParts;
+			sourceTree = "<group>";
+		};
+		BC57C0CD2C96A0D700786503 /* LiviActivity */ = {
+			isa = PBXGroup;
+			children = (
+				BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */,
+				BC4B662F2C955B1B004C3EEF /* LiveActivityManager.swift */,
+				BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */,
+			);
+			path = LiviActivity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,16 +538,21 @@
 			files = (
 				BC3FCD9F2C914E2900F3AC29 /* ResourceAdapt.swift in Sources */,
 				BC057EB62C92EE0F0030C275 /* DateDependency.swift in Sources */,
+				BC57C0D02C96A16000786503 /* LiveActivityManaging.swift in Sources */,
+				BC4B66332C959A72004C3EEF /* TimeInterval+Extension.swift in Sources */,
 				BC3FCD672C913E2900F3AC29 /* MainTimerView.swift in Sources */,
 				BC3FCDAC2C918A4300F3AC29 /* TimeWatch.swift in Sources */,
+				BC4B66352C95AF0F004C3EEF /* Calendar+Extension.swift in Sources */,
+				BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */,
+				BC4B66302C955B1B004C3EEF /* LiveActivityManager.swift in Sources */,
 				BC3FCD932C91429900F3AC29 /* TimerStatus.swift in Sources */,
 				BC3FCD952C9142BF00F3AC29 /* TimerActionType.swift in Sources */,
 				BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */,
 				BC3FCDA32C91527100F3AC29 /* FrameButtonStyle.swift in Sources */,
 				BC3FCD652C913E2900F3AC29 /* TimeWatcherApp.swift in Sources */,
+				BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */,
 				BC3FCD902C91408A00F3AC29 /* MainTimerViewModel.swift in Sources */,
 				BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */,
-				BC3FCDA82C915EDF00F3AC29 /* ViewModifier.swift in Sources */,
 				BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -573,6 +608,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = TimeWatcherWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -582,6 +618,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher.TimeWatcherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -601,6 +641,7 @@
 				INFOPLIST_KEY_CFBundleDisplayName = TimeWatcherWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -610,6 +651,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher.TimeWatcherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -747,6 +792,7 @@
 				DEVELOPMENT_TEAM = 56LYVN6DMF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -778,6 +824,7 @@
 				DEVELOPMENT_TEAM = 56LYVN6DMF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
