@@ -5,6 +5,7 @@
 //  Created by 佐藤汰一 on 2024/09/11.
 //
 
+import Combine
 import SwiftUI
 import ActivityKit
 
@@ -19,18 +20,20 @@ class MainTimerViewModel: ObservableObject {
     
     // MARK: dependency property
     
-    private var timeWatch: TimeWatch?
+    private var timeWatch: TimeWatch
     private let liveActivityMgr: LiveActivityManaging
     private let dateDependency: DateDependency
     
     // MARK: private property
     
-    // 実行中のLiveActivityのToken
-    private var currentLiveActivityToken: String?
+    // LiveActivityが開始しているかどうか
+    private var isStartingLiveActivity = false
     // 現在の経過時間
     private var currentTimeLapse: TimeInterval = .zero
     // Live Activityの更新リクエストTask
     private var updateLiveActivityRequestTasks = Set<Task<Void, Never>>()
+    // タイマー状態監視用のキャンセラブル
+    private var timerStatusObserveCancellable: AnyCancellable?
     
     // 1分基準の経過時間の進捗
     private var timeProgressPerMinute: Double {
@@ -38,14 +41,12 @@ class MainTimerViewModel: ObservableObject {
         return currentTimeLapse / 60
     }
     
-    // 最大表示時間
-    private let maxDisplayTimeString = "99:59:59.999"
     // 表示最大可能時間
     private var maxDisplayTime: TimeInterval {
         
         let initialDate = Date(timeIntervalSince1970: .zero)
         return Calendar.current.date(byAdding: .hour,
-                                     value: 100,
+                                     value: AppConstants.maxDisplayTime,
                                      to: initialDate)?.timeIntervalSince1970 ?? .infinity
     }
     
@@ -54,21 +55,13 @@ class MainTimerViewModel: ObservableObject {
          dateDependency: DateDependency = DateDependency(),
          isOverMaxTime: Bool = false) {
         
-        self.timeWatch = timeWatch
+        self.timeWatch = timeWatch ?? TimeWatch.shared
         self.liveActivityMgr = liveActivityMgr
         self.dateDependency = dateDependency
         self.isOverMaxTime = isOverMaxTime
         
-        // テスト時以外はnilの状態なので、timeWatchの初期化を行う
-        if self.timeWatch == nil {
-            
-            // TimeWatchオブジェクトの初期化
-            logger.debug("timeWatch initial setting.")
-            self.timeWatch = TimeWatch()
-        }
-        
         // 時間経過時に実行されるクロージャの設定
-        self.timeWatch?.setTimerHandler { @MainActor [weak self] timeLapse in
+        self.timeWatch.setTimerHandler { @MainActor [weak self] timeLapse in
             
             guard let self else { return }
             self.didReceiveTimeLapse(timeLapse)
@@ -76,6 +69,13 @@ class MainTimerViewModel: ObservableObject {
     }
     
     // MARK: - public method
+    
+    /// 画面表示時の処理
+    func onAppear() {
+        
+        // TimerStatusの監視
+        addObserveTimerStatus()
+    }
     
     /// タイマーのアクションボタン投下時の動作を、アクションタイプから決定して実行する
     /// - Parameter type: アクションタイプ
@@ -102,29 +102,41 @@ class MainTimerViewModel: ObservableObject {
 @MainActor
 private extension MainTimerViewModel {
     
+    func addObserveTimerStatus() {
+        
+        timerStatusObserveCancellable = timeWatch.createTimerStatusPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                
+                guard let self else { return }
+                self.timerStatus = status
+                
+                logger.info("Did update timer status(\(status))")
+            }
+    }
+    
     /// タイマー開始ボタン押下
     func tappedStartTimerButton() {
         
-        timerStatus = .start
-        timeWatch?.startTimer()
+        timeWatch.startTimer()
         
         // Live Activityが開始されていない場合は、新規にLive Activityを開始する
-        if currentLiveActivityToken == nil {
+        if isStartingLiveActivity { return }
+        
+        Task {
             
-            Task {
+            do {
                 
-                do {
-                    
-                    currentLiveActivityToken = try await liveActivityMgr
-                        .start(attributes: .init(),
-                               state: getCurrentLiveActivityState(timeLapse: currentTimeLapse,
-                                                                  timerStatus: timerStatus))
-                    logger.info("Succeed start live activity(token=\(String(describing: currentLiveActivityToken)))")
-                }
-                catch {
-                    
-                    catchLiveActivityRequestError(error, from: "start")
-                }
+                try await liveActivityMgr
+                    .start(attributes: .init(),
+                           state: getCurrentLiveActivityState(timeLapse: currentTimeLapse,
+                                                              timerStatus: .start))
+                isStartingLiveActivity = true
+                logger.info("Succeed start live activity.")
+            }
+            catch {
+                
+                catchLiveActivityRequestError(error, from: "start")
             }
         }
     }
@@ -135,22 +147,21 @@ private extension MainTimerViewModel {
         // 現在リクエストしているTaskをすべてキャンセルする
         cancelLiveActivityTask()
         
-        timerStatus = .stop
-        timeWatch?.stopTimer()
+        // タイマー停止
+        timeWatch.stopTimer()
         
-        // LiveActivityTokenがない場合は、開始できていないため停止時の更新も行わない
-        guard let currentLiveActivityToken else {
+        // LiveActivityが開始していない場合は、停止時の更新も行わない
+        guard isStartingLiveActivity else {
             
-            logger.error("Not found currentLiveActivityToken.")
+            logger.error("Live Activity is not running.")
             return
         }
         
-        Task { [currentLiveActivityToken, currentTimeLapse, timerStatus] in
+        Task { [currentTimeLapse] in
             
-            await self.requestUpdateLiveActivityState(currentLiveActivityToken: currentLiveActivityToken,
-                                                      timeLapse: currentTimeLapse,
-                                                      timerStatus: timerStatus)
-            logger.info("Succeed update stop liviActivity(\(currentLiveActivityToken)).")
+            await self.requestUpdateLiveActivityState(timeLapse: currentTimeLapse,
+                                                      timerStatus: .stop)
+            logger.info("Succeed update stop liviActivity.")
         }
     }
     
@@ -160,23 +171,26 @@ private extension MainTimerViewModel {
         // 現在リクエストしているTaskをすべてキャンセルする
         cancelLiveActivityTask()
         
-        timerStatus = .initial
-        timeWatch?.resetTimer()
+        // タイマー終了(リセット)
+        timeWatch.resetTimer()
         
-        // LiveActivityTokenがない場合は、開始できていないため停止のリクエストも行わない
-        guard let currentLiveActivityToken else {
+        // LiveActivityが開始していない場合は、停止時の更新も行わない
+        guard isStartingLiveActivity else {
             
-            logger.error("Not found currentLiveActivityToken.")
+            logger.error("Live Activity is not running.")
             return
         }
+        
+        // Model上でLiveActivityの動作を停止する
+        isStartingLiveActivity = false
         
         // Live Activityの停止
         Task {
             
             do {
                 
-                try await liveActivityMgr.stop(token: currentLiveActivityToken)
-                logger.info("Succeed end liviActivity(\(currentLiveActivityToken)).")
+                try await liveActivityMgr.stop()
+                logger.info("Succeed end liviActivity.")
             }
             catch {
                 
@@ -190,10 +204,11 @@ private extension MainTimerViewModel {
         
         // s単位の更新がある場合に、LiveActivityの更新を行う
         // ms単位の更新を行うと、非同期のタスクが逼迫しパフォーマンスやデータレースの懸念があるため
+        // LiveActivityが開始されていない場合にも、LiveActivityの更新は行わない
         if timeLapse.seconds > self.currentTimeLapse.seconds,
-           let currentLiveActivityToken {
+           isStartingLiveActivity {
             
-            let task = Task { [currentLiveActivityToken, timerStatus] in
+            let task = Task { [timerStatus] in
                 
                 // タイマー開始状態でない場合は時間経過の検知は無視する
                 guard timerStatus == .start,
@@ -203,36 +218,20 @@ private extension MainTimerViewModel {
                     return
                 }
                 
-                await self.requestUpdateLiveActivityState(currentLiveActivityToken: currentLiveActivityToken,
-                                                          timeLapse: timeLapse,
+                await self.requestUpdateLiveActivityState(timeLapse: timeLapse,
                                                           timerStatus: timerStatus)
                 
                 // タスクの終了
                 targetTask.cancel()
-                logger.debug("Did update on received time lapse(token=\(currentLiveActivityToken), status=\(timerStatus)).")
+                logger.debug("Did update on received time lapse(status=\(timerStatus)).")
             }
             updateLiveActivityRequestTasks.insert(task)
         }
         
         // 現在の経過時間の更新
         self.currentTimeLapse = timeLapse
-        self.currentTimeString = self.getTimeString(timeLapse)
-        self.isOverMaxTime = self.currentTimeString == maxDisplayTimeString
-    }
-    
-    // タイムスタンプ(sec)から画面に表示する表示文字列を返す
-    func getTimeString(_ timeLapse: TimeInterval) -> String {
-        
-        guard maxDisplayTime > timeLapse else {
-            
-            return maxDisplayTimeString
-        }
-        
-        let millisec = Int(round(timeLapse * 1000)) % 1000
-        let sec = Int(timeLapse) % 60
-        let minute = Int(timeLapse / 60) % 60
-        let hour = abs(Int(timeLapse / 3600))
-        return String(format: "%02d:%02d:%02d.%03d", hour, minute, sec, millisec)
+        self.currentTimeString = timeLapse.timeLapseFullString
+        self.isOverMaxTime = self.currentTimeString == AppConstants.maxDisplayTimeString
     }
     
     // LiveActivityの更新タスクをすべてキャンセルする
@@ -246,14 +245,12 @@ private extension MainTimerViewModel {
         logger.info("Did cancel all activity task(count=\(taskCount)).")
     }
     
-    func requestUpdateLiveActivityState(currentLiveActivityToken: String,
-                                        timeLapse: TimeInterval,
+    func requestUpdateLiveActivityState(timeLapse: TimeInterval,
                                         timerStatus: TimerStatus) async {
         
         do {
             
-            try await self.liveActivityMgr.update(token: currentLiveActivityToken,
-                                                  state: getCurrentLiveActivityState(timeLapse: timeLapse,
+            try await self.liveActivityMgr.update(state: getCurrentLiveActivityState(timeLapse: timeLapse,
                                                                                      timerStatus: timerStatus))
         }
         catch {
@@ -265,21 +262,11 @@ private extension MainTimerViewModel {
     // 現在のタイマーの状態をLiveActivityで受け取れる型として返却
     func getCurrentLiveActivityState(timeLapse: TimeInterval, timerStatus: TimerStatus) -> TimeWatcherWidgetAttributes.ContentState {
         
-        let addingMilliSecDate = Calendar.current.date(byAdding: -timeLapse.milliSec, to: dateDependency.generateNow())
-        let closedRangeStartDate = Calendar.current.date(byAdding: [
-            .hour: -timeLapse.hour,
-            .minute: -timeLapse.minute,
-            .second: -timeLapse.seconds
-        ],
-                                               to: addingMilliSecDate)
-        let closedRangeEndDate = Calendar.current.date(byAdding: .hour,
-                                                       value: 100,
-                                                       to: dateDependency.generateNow())
+        logger.debug("state info(timeLapse=\(timeLapse.timeLapseShortString), status=\(timerStatus))")
         
-        logger.debug("state info(timeLapse=\(String(currentTimeString.prefix(8))), status=\(timerStatus), closedRangeStartDate=\(closedRangeStartDate.toStringDate()), closedRangeEndDate=\(String(describing: closedRangeEndDate?.toStringDate())))")
-        
-        return .init(timeLapse: closedRangeStartDate...(closedRangeEndDate ?? dateDependency.generateNow()),
-                     timeLapseString: String(currentTimeString.prefix(8)),
+        return .init(timeLapse: timeLapse,
+                     currentDate: dateDependency.generateNow(),
+                     timeLapseString: timeLapse.timeLapseShortString,
                      timerStatus: timerStatus)
     }
     

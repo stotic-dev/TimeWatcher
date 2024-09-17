@@ -9,18 +9,17 @@ import ActivityKit
 
 actor LiveActivityManager: LiveActivityManaging {
     
-    func start(attributes: TimeWatcherWidgetAttributes, state: TimeWatcherWidgetAttributes.ContentState) async throws -> String {
+    func start(attributes: TimeWatcherWidgetAttributes, state: TimeWatcherWidgetAttributes.ContentState) async throws {
         
         let activity = try Activity<TimeWatcherWidgetAttributes>.request(attributes: attributes,
                                                                          content: .init(state: state,
                                                                                         staleDate: nil))
-        LiveActivitiesStore.shared[activity.id] = activity
-        return activity.id
+        TimeWatchLiveActivitiesStore.shared.setActivity(activity)
     }
     
-    func update(token: String, state: TimeWatcherWidgetAttributes.ContentState) async throws {
+    func update(state: TimeWatcherWidgetAttributes.ContentState) async throws {
         
-        guard let activity = LiveActivitiesStore.shared[token] else {
+        guard let activity = TimeWatchLiveActivitiesStore.shared.activity else {
             
             throw LiveActivityRequestError.notFoundActivity
         }
@@ -28,14 +27,14 @@ actor LiveActivityManager: LiveActivityManaging {
         await activity.update(.init(state: state, staleDate: nil))
     }
     
-    func stop(token: String) async throws {
+    func stop() async throws {
         
-        guard let activity = LiveActivitiesStore.shared[token] else {
+        guard let activity = TimeWatchLiveActivitiesStore.shared.activity else {
             
             throw LiveActivityRequestError.notFoundActivity
         }
         
-        LiveActivitiesStore.shared[token] = nil
+        TimeWatchLiveActivitiesStore.shared.clear()
         
         await activity.end(.init(state: activity.content.state, staleDate: nil),
                            dismissalPolicy: .immediate)
@@ -47,22 +46,19 @@ enum LiveActivityRequestError: Error {
     case notFoundActivity
 }
 
-class LiveActivitiesStore {
+class TimeWatchLiveActivitiesStore {
     
-    static var shared = LiveActivitiesStore()
+    static var shared = TimeWatchLiveActivitiesStore()
     
-    private var store: [String: Activity<TimeWatcherWidgetAttributes>] = [:]
+    private(set) var activity: Activity<TimeWatcherWidgetAttributes>?
     
-    subscript(_ id: String) -> Activity<TimeWatcherWidgetAttributes>? {
+    fileprivate func setActivity(_ activity: Activity<TimeWatcherWidgetAttributes>) {
         
-        get {
-            
-            return store[id]
-        }
+        self.activity = activity
+    }
+    
+    fileprivate func clear() {
         
-        set {
-            
-            store[id] = newValue
-        }
+        self.activity = nil
     }
 }
