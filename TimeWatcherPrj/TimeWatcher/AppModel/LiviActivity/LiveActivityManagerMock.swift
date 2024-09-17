@@ -7,34 +7,34 @@
 
 actor LiveActivityManagerMock: LiveActivityManaging {
     
-    private var startProc: (TimeWatcherWidgetAttributes.ContentState) throws -> String
-    private var updateProc: (String, TimeWatcherWidgetAttributes.ContentState) throws -> Void
-    private var stopProc: (String) throws -> Void
+    private var startProc: (TimeWatcherWidgetAttributes.ContentState) throws -> Void
+    private var updateProc: (TimeWatcherWidgetAttributes.ContentState) throws -> Void
+    private var stopProc: () throws -> Void
     
-    init(startProc: @escaping (TimeWatcherWidgetAttributes.ContentState) throws -> String,
-         updateProc: @escaping (String, TimeWatcherWidgetAttributes.ContentState) throws -> Void,
-         stopProc: @escaping (String) throws -> Void) {
+    init(startProc: @escaping (TimeWatcherWidgetAttributes.ContentState) throws -> Void,
+         updateProc: @escaping (TimeWatcherWidgetAttributes.ContentState) throws -> Void,
+         stopProc: @escaping () throws -> Void) {
         
         self.startProc = startProc
         self.updateProc = updateProc
         self.stopProc = stopProc
     }
     
-    func start(attributes: TimeWatcherWidgetAttributes, state: TimeWatcherWidgetAttributes.ContentState) async throws -> String {
+    func start(attributes: TimeWatcherWidgetAttributes, state: TimeWatcherWidgetAttributes.ContentState) async throws {
         
         logger.debug("[In] state=\(state)")
         return try startProc(state)
     }
     
-    func update(token: String, state: TimeWatcherWidgetAttributes.ContentState) async throws {
+    func update(state: TimeWatcherWidgetAttributes.ContentState) async throws {
         
-        logger.debug("[In] token=\(token), state=\(state)")
-        try updateProc(token, state)
+        logger.debug("[In] state=\(state)")
+        try updateProc(state)
     }
     
-    func stop(token: String) async throws {
+    func stop() async throws {
         
-        logger.debug("[In] token=\(token)")
-        try stopProc(token)
+        logger.debug("[In]")
+        try stopProc()
     }
 }

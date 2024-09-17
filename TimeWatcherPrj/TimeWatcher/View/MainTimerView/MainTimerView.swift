@@ -46,6 +46,9 @@ struct MainTimerView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.onAppear()
+        }
     }
 }
 

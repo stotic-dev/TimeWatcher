@@ -6,6 +6,7 @@
 //
 
 import ActivityKit
+import AppIntents
 import WidgetKit
 import SwiftUI
 
@@ -14,6 +15,32 @@ import SwiftUI
 struct TimeWatcherWidgetAttributes: ActivityAttributes {
     
     public struct ContentState: Codable, Hashable {
+        
+        init(timeLapse: TimeInterval, currentDate: Date, timeLapseString: String, timerStatus: TimerStatus) {
+            
+            let minusMilliSec = Calendar.current.date(byAdding: -timeLapse.milliSec,
+                                                      to: currentDate)
+            let startRangeDate = Calendar.current.date(byAdding: [
+                .hour: -timeLapse.hour,
+                .minute: -timeLapse.minute,
+                .second: -timeLapse.seconds
+            ],
+                                                       to: minusMilliSec)
+            let endRangeDate = Calendar.current.date(byAdding: .hour,
+                                                     value: AppConstants.maxDisplayTime,
+                                                     to: currentDate) ?? currentDate
+            
+            self.timeLapse = startRangeDate...endRangeDate
+            self.timeLapseString = timeLapseString
+            self.timerStatus = timerStatus
+        }
+        
+        init(timeLapse: ClosedRange<Date>, timeLapseString: String, timerStatus: TimerStatus) {
+            
+            self.timeLapse = timeLapse
+            self.timeLapseString = timeLapseString
+            self.timerStatus = timerStatus
+        }
         
         /// 経過時間
         var timeLapse: ClosedRange<Date>
@@ -52,20 +79,24 @@ struct TimeWatcherWidgetLiveActivity: Widget {
     private let shortTimeClockSize: CGFloat = 20
     private let actionButtonIconSize: CGFloat = 40
     private let shortTimeClockLineWidth: CGFloat = 2
-    private let expandedTextWidth: CGFloat = 65
-    private let contentTimerTextWidth: CGFloat = 115
+    private let compactTextWidth: CGFloat = 65
+    private let expandedTextWidth: CGFloat = 100
+    private let contentTimerTextWidth: CGFloat = 120
     
     // MARK: live activity view body property
     
+    @MainActor
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: TimeWatcherWidgetAttributes.self) { context in
             HStack(spacing: .zero) {
-                createActionButtonView(useableActions: context.state.timerStatus.useableActions)
+                createActionButtonView(useableActions: context.state.timerStatus.useableActions,
+                                       token: context.activityID)
                 Spacer()
                 createTimeLapseText(status: context.state.timerStatus,
                                     timeLapseString: context.state.timeLapseString,
                                     timerInterval: context.state.timeLapse,
-                                    fontSize: largeTimeLapseTextFontSize)
+                                    fontSize: largeTimeLapseTextFontSize,
+                                    timerTextWidth: contentTimerTextWidth)
             }
             .padding(.horizontal, liveActivityHorizontalPadding)
             .activityBackgroundTint(Color(CustomColor.primaryBackgroundColor))
@@ -73,13 +104,18 @@ struct TimeWatcherWidgetLiveActivity: Widget {
         } dynamicIsland: { context in
             DynamicIsland { // MARK: Expanded View
                 DynamicIslandExpandedRegion(.leading) {
-                    createActionButtonView(useableActions: context.state.useableActions)
+                    createActionButtonView(useableActions: context.state.useableActions,
+                                           token: context.activityID)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    createTimeLapseText(status: context.state.timerStatus,
-                                        timeLapseString: context.state.timeLapseString,
-                                        timerInterval: context.state.timeLapse,
-                                        fontSize: largeTimeLapseTextFontSize)
+                    HStack(spacing: .zero) {
+                        Spacer()
+                        createTimeLapseText(status: context.state.timerStatus,
+                                            timeLapseString: context.state.timeLapseString,
+                                            timerInterval: context.state.timeLapse,
+                                            fontSize: largeTimeLapseTextFontSize,
+                                            timerTextWidth: expandedTextWidth)
+                    }
                     .frame(maxHeight: .infinity)
                 }
             } compactLeading: { // MARK: Compact View
@@ -88,8 +124,8 @@ struct TimeWatcherWidgetLiveActivity: Widget {
                 createTimeLapseText(status: context.state.timerStatus,
                                     timeLapseString: context.state.timeLapseString,
                                     timerInterval: context.state.timeLapse,
-                                    fontSize: shortTimeLapseTextFontSize)
-                .frame(maxWidth: expandedTextWidth)
+                                    fontSize: shortTimeLapseTextFontSize,
+                                    timerTextWidth: compactTextWidth)
             } minimal: { // MARK: Minimal View
                 createMiniStatusIconView(context.state.statusIcon)
             }
@@ -99,14 +135,13 @@ struct TimeWatcherWidgetLiveActivity: Widget {
 
 // MARK: - private TimeWatcherWidgetLiveActivity method
 
+@MainActor
 private extension TimeWatcherWidgetLiveActivity {
     
-    func createActionButtonView(useableActions: [TimerActionType]) -> some View {
+    func createActionButtonView(useableActions: [TimerActionType], token: String) -> some View {
         HStack(spacing: actionButtonSpacing) {
             ForEach(useableActions, id: \.self) { type in
-                Button {
-                    
-                } label: {
+                Button(intent: type.getIntent(token: token)) {
                     Image(systemName: type.buttonIconName)
                         .resizable()
                         .padding(actionButtonIconPadding)
@@ -132,21 +167,42 @@ private extension TimeWatcherWidgetLiveActivity {
     func createTimeLapseText(status: TimerStatus,
                              timeLapseString: String,
                              timerInterval: ClosedRange<Date>,
-                             fontSize: CGFloat) -> some View {
+                             fontSize: CGFloat,
+                             timerTextWidth: CGFloat) -> some View {
         Group {
             if status == .stop {
                 Text(timeLapseString)
+                    .fixedSize(horizontal: true, vertical: false)
             }
             else {
                 Text(timerInterval: timerInterval,
                      countsDown: false,
                      showsHours: true)
                 .monospacedDigit()
-                .frame(width: contentTimerTextWidth)
+                .frame(width: timerTextWidth)
             }
         }
         .font(.system(size: fontSize, weight: .bold))
         .foregroundStyle(Color(CustomColor.timerTextColor))
+    }
+}
+
+fileprivate extension TimerActionType {
+    
+    @MainActor
+    func getIntent(token: String) -> any AppIntent {
+        
+        return switch self {
+            
+        case .start:
+            TimerStartIntent()
+            
+        case .stop:
+            TimerStopIntent()
+            
+        case .reset:
+            TimerResetIntent()
+        }
     }
 }
 

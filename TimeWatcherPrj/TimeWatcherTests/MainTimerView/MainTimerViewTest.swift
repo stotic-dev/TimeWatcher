@@ -23,13 +23,12 @@ final class MainTimerViewTest: XCTestCase {
     private var dependencyDate: DateDependency!
     private let testTimerPublisher = PassthroughSubject<Date, Never>()
     private let calendar = Calendar(identifier: .gregorian)
-    private let liveActivityToken = UUID().uuidString
     
     private var cancellables = Set<AnyCancellable>()
     
     override func setUp() {
         
-        dependencyDate = DateDependency(now: currentDate)
+        dependencyDate = DateDependency(now: currentDate, isTest: true)
     }
     
     override func tearDown() {
@@ -50,6 +49,9 @@ final class MainTimerViewTest: XCTestCase {
                                       currentTime: dependencyDate)
         
         let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch)
+        
+        // 画面表示
+        testViewModel.onAppear()
         
         // ウォッチの状態が初期状態になっていることの確認
         checkTimerState(testViewModel, expected: .initial)
@@ -94,6 +96,12 @@ final class MainTimerViewTest: XCTestCase {
                                       currentTime: dependencyDate)
         let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch)
         
+        // 画面表示
+        testViewModel.onAppear()
+        
+        // ウォッチの状態が初期状態になっていることの確認
+        checkTimerState(testViewModel, expected: .initial)
+        
         // タイムウォッチ開始
         dependencyDate.now = currentDate
         testViewModel.tappedTimerActionButton(.start)
@@ -113,7 +121,8 @@ final class MainTimerViewTest: XCTestCase {
         checkTimerState(testViewModel, expected: .stop)
         
         // 経過時間表示文字が正しく更新されていることを確認
-        dependencyDate.now = getTimeLapse(base: dependencyDate.generateNow(), adding: [.hour: 3])
+        dependencyDate.now = TestUtilities.getTimeLapse(base: dependencyDate.generateNow(),
+                                                        adding: [.hour: 3])
         checkDisplayStringAfterTimeLapse(testViewModel: testViewModel,
                                          addingHour: 1, addingMinute: 59, addingSec: 50,
                                          expected: "00:00:09.000")
@@ -136,7 +145,8 @@ final class MainTimerViewTest: XCTestCase {
         checkTimerState(testViewModel, expected: .stop)
         
         // 現在時間の更新
-        dependencyDate.now = getTimeLapse(base: dependencyDate.generateNow(), adding: [.hour: 1])
+        dependencyDate.now = TestUtilities.getTimeLapse(base: dependencyDate.generateNow(),
+                                                        adding: [.hour: 1])
         
         // タイムウォッチ開始
         testViewModel.tappedTimerActionButton(.start)
@@ -160,6 +170,12 @@ final class MainTimerViewTest: XCTestCase {
                                       currentTime: dependencyDate)
         let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch)
         
+        // 画面表示
+        testViewModel.onAppear()
+        
+        // ウォッチの状態が初期状態になっていることの確認
+        checkTimerState(testViewModel, expected: .initial)
+        
         // タイムウォッチ開始
         dependencyDate.now = currentDate
         testViewModel.tappedTimerActionButton(.start)
@@ -179,7 +195,8 @@ final class MainTimerViewTest: XCTestCase {
         checkTimerState(testViewModel, expected: .stop)
         
         // 現在時間の更新
-        dependencyDate.now = getTimeLapse(base: dependencyDate.generateNow(), adding: [.hour: 3])
+        dependencyDate.now = TestUtilities.getTimeLapse(base: dependencyDate.generateNow(),
+                                                        adding: [.hour: 3])
         
         // タイムウォッチリセット
         testViewModel.tappedTimerActionButton(.reset)
@@ -188,7 +205,8 @@ final class MainTimerViewTest: XCTestCase {
         checkTimerState(testViewModel, expected: .initial)
         
         // 現在時間の更新
-        dependencyDate.now = getTimeLapse(base: dependencyDate.generateNow(), adding: [.minute: 3])
+        dependencyDate.now = TestUtilities.getTimeLapse(base: dependencyDate.generateNow(),
+                                                        adding: [.minute: 3])
         
         // 経過時間表示文字が正しく更新されていることを確認
         testTimerPublisher.send(dependencyDate.generateNow())
@@ -197,7 +215,7 @@ final class MainTimerViewTest: XCTestCase {
         checkTimeStringZero(testViewModel)
         
         // 現在時間の更新
-        dependencyDate.now = getTimeLapse(base: dependencyDate.generateNow(), adding: [.hour: 1])
+        dependencyDate.now = TestUtilities.getTimeLapse(base: dependencyDate.generateNow(), adding: [.hour: 1])
         
         // タイムウォッチ開始
         testViewModel.tappedTimerActionButton(.start)
@@ -263,6 +281,9 @@ final class MainTimerViewTest: XCTestCase {
         let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
                                                liveActivityMgr: liveActivityManager,
                                                dateDependency: dependencyDate)
+        
+        // 画面表示
+        testViewModel.onAppear()
         
         // ウォッチの状態が初期状態になっていることの確認
         checkTimerState(testViewModel, expected: .initial)
@@ -348,6 +369,9 @@ final class MainTimerViewTest: XCTestCase {
         let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
                                                liveActivityMgr: liveActivityManager,
                                                dateDependency: dependencyDate)
+        
+        // 画面表示
+        testViewModel.onAppear()
         
         // ウォッチの状態が初期状態になっていることの確認
         checkTimerState(testViewModel, expected: .initial)
@@ -444,6 +468,9 @@ final class MainTimerViewTest: XCTestCase {
                                                liveActivityMgr: liveActivityManager,
                                                dateDependency: dependencyDate)
         
+        // 画面表示
+        testViewModel.onAppear()
+        
         // ウォッチの状態が初期状態になっていることの確認
         checkTimerState(testViewModel, expected: .initial)
         
@@ -516,9 +543,7 @@ private extension MainTimerViewTest {
             startExpectation.fulfill()
             
             if needThrowStart { throw ActivityAuthorizationError.unsupported }
-            
-            return self.liveActivityToken
-        } updateProc: { token, state in
+        } updateProc: { state in
             
             if state.timerStatus == .start {
                 
@@ -528,25 +553,25 @@ private extension MainTimerViewTest {
                 
                 updateStopExpectation.fulfill()
             }
-                                    
-            let minusMilliSec = self.getAddingMilliSec(expectedTimeLapseMilliSecs.removeFirst(), to: self.dependencyDate.generateNow())
-            let minusTimeLapse = self.getTimeLapse(base: minusMilliSec,
-                                                   adding: expectedTimeLapseComponents.removeFirst())
+            
+            let minusMilliSec = TestUtilities.getAddingMilliSec(expectedTimeLapseMilliSecs.removeFirst(), to: self.dependencyDate.generateNow())
+            let minusTimeLapse = TestUtilities.getTimeLapse(base: minusMilliSec,
+                                                            adding: expectedTimeLapseComponents.removeFirst())
             let endDate = self.calendar.date(byAdding: .hour,
                                              value: 100,
                                              to: self.dependencyDate.generateNow()) ?? self.dependencyDate.generateNow()
-            
-            XCTAssertEqual(self.liveActivityToken, token)
-            XCTAssertEqual(state, .init(timeLapse: minusTimeLapse...endDate,
-                                        timeLapseString: expectedTimeLapseStrings.removeFirst(),
-                                        timerStatus: state.timerStatus))
+            let actualState: TimeWatcherWidgetAttributes.ContentState = .init(timeLapse: minusTimeLapse...endDate,
+                                                                              timeLapseString: expectedTimeLapseStrings.removeFirst(),
+                                                                              timerStatus: state.timerStatus)
+            XCTAssertEqual(state.timeLapse.lowerBound.toStringDate(), actualState.timeLapse.lowerBound.toStringDate())
+            XCTAssertEqual(state.timeLapse.upperBound.toStringDate(), actualState.timeLapse.upperBound.toStringDate())
+            XCTAssertEqual(state.timeLapseString, actualState.timeLapseString)
+            XCTAssertEqual(state.timerStatus, actualState.timerStatus)
             
             if needThrowUpdate { throw LiveActivityRequestError.notFoundActivity }
-        } stopProc: { token in
+        } stopProc: {
             
             endExpectation.fulfill()
-                        
-            XCTAssertEqual(self.liveActivityToken, token)
             
             if needThrowEnd { throw LiveActivityRequestError.notFoundActivity }
         }
@@ -560,13 +585,26 @@ private extension MainTimerViewTest {
     
     func checkTimerState(_ viewModel: MainTimerViewModel, expected: TimerStatus) {
         
-        XCTAssertEqual(viewModel.timerStatus, expected)
+        let expectation = XCTestExpectation(description: "timer status")
         
-        if expected == .initial {
+        let cancellable = viewModel.$timerStatus.dropFirst().sink { [weak self] status in
             
-            // 状態が初期状態のときは、表示経過時間も初期化されているか確認
-            checkTimeStringZero(viewModel)
+            guard let self else { return }
+            
+            XCTAssertEqual(status, expected)
+            
+            if expected == .initial {
+                
+                // 状態が初期状態のときは、表示経過時間も初期化されているか確認
+                self.checkTimeStringZero(viewModel)
+            }
+            
+            expectation.fulfill()
         }
+        
+        wait(for: [expectation], timeout: 1)
+        
+        cancellable.cancel()
     }
     
     func checkTimeStringZero(_ viewModel: MainTimerViewModel) {
@@ -592,14 +630,14 @@ private extension MainTimerViewTest {
         
         print("current date before: \(dependencyDate.generateNow().toStringDate())")
         
-        let addingMilliSecTime = getAddingMilliSec(TimeInterval(addingMilliSec),
-                                                   to: dependencyDate.generateNow())
-        let addingAllTime = getTimeLapse(base: addingMilliSecTime,
-                                         adding: [
-                                            .hour: addingHour,
-                                            .minute: addingMinute,
-                                            .second: addingSec,
-                                         ]
+        let addingMilliSecTime = TestUtilities.getAddingMilliSec(TimeInterval(addingMilliSec),
+                                                                 to: dependencyDate.generateNow())
+        let addingAllTime = TestUtilities.getTimeLapse(base: addingMilliSecTime,
+                                                       adding: [
+                                                        .hour: addingHour,
+                                                        .minute: addingMinute,
+                                                        .second: addingSec,
+                                                       ]
         )
         
         // 経過時間を更新
@@ -609,13 +647,13 @@ private extension MainTimerViewTest {
         print("addingMilliSecTime: \(addingMilliSecTime.toStringDate())")
         print("addingAllTime: \(addingAllTime.toStringDate())")
         
-        testTimerPublisher.send(getTimeLapse(base: addingMilliSecTime,
-                                             adding: [
-                                                .hour: addingHour,
-                                                .minute: addingMinute,
-                                                .second: addingSec,
-                                             ]
-                                            )
+        testTimerPublisher.send(TestUtilities.getTimeLapse(base: addingMilliSecTime,
+                                                           adding: [
+                                                            .hour: addingHour,
+                                                            .minute: addingMinute,
+                                                            .second: addingSec,
+                                                           ]
+                                                          )
         )
         
         waitUpdateDate(testViewModel, expectation: expectation, expected: expected)
@@ -651,24 +689,5 @@ private extension MainTimerViewTest {
             expectation.fulfill()
         }
         XCTWaiter().wait(for: [expectation], timeout: waitTime + 1)
-    }
-}
-
-// MARK: - 便利メソッド
-
-private extension MainTimerViewTest {
-    
-    func getTimeLapse(base: Date, adding: [Calendar.Component: Int]) -> Date {
-        
-        return adding.reduce(into: base) {
-            
-            $0 = calendar.date(byAdding: $1.key, value: $1.value, to: $0) ?? $0
-        }
-    }
-    
-    func getAddingMilliSec(_ millisec: TimeInterval, to: Date) -> Date {
-        
-        let dateTime = to.timeIntervalSince1970MiliSec + millisec
-        return Date(timeIntervalSince1970: dateTime / 1000)
     }
 }
