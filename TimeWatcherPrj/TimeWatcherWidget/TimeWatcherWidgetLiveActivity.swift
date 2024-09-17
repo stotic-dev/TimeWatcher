@@ -53,6 +53,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
     private let actionButtonIconSize: CGFloat = 40
     private let shortTimeClockLineWidth: CGFloat = 2
     private let expandedTextWidth: CGFloat = 65
+    private let contentTimerTextWidth: CGFloat = 115
     
     // MARK: live activity view body property
     
@@ -65,7 +66,6 @@ struct TimeWatcherWidgetLiveActivity: Widget {
                                     timeLapseString: context.state.timeLapseString,
                                     timerInterval: context.state.timeLapse,
                                     fontSize: largeTimeLapseTextFontSize)
-                .frame(maxWidth: .infinity, alignment: .trailing)
             }
             .padding(.horizontal, liveActivityHorizontalPadding)
             .activityBackgroundTint(Color(CustomColor.primaryBackgroundColor))
@@ -141,6 +141,8 @@ private extension TimeWatcherWidgetLiveActivity {
                 Text(timerInterval: timerInterval,
                      countsDown: false,
                      showsHours: true)
+                .monospacedDigit()
+                .frame(width: contentTimerTextWidth)
             }
         }
         .font(.system(size: fontSize, weight: .bold))
