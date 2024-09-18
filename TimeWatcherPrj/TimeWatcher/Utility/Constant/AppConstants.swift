@@ -9,6 +9,12 @@ import Foundation
 
 struct AppConstants {
     
+    // MARK: - アプリ共通
+    
+    static let mainBundleId = "taichi.satou.TimeWatcher"
+    
+    // MARK: - ウォッチ関連のプロパティ
+    
     // 最大表示時間
     static let maxDisplayTimeString = "99:59:59.999"
     // 最大表示時間

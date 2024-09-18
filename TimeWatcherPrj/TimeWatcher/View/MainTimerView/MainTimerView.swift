@@ -11,6 +11,7 @@ import TimeWatcherExternalResouce
 struct MainTimerView: View {
     
     @StateObject var viewModel: MainTimerViewModel
+    @EnvironmentObject var openUrlViewModel: OpenUrlViewModel
     
     // MARK: - layout property
     
@@ -48,6 +49,9 @@ struct MainTimerView: View {
         }
         .onAppear {
             viewModel.onAppear()
+        }
+        .onReceive(openUrlViewModel.$widgetUrlKey.compactMap { $0 }) { widgetUrl in
+            viewModel.onOpenLiveActivityUrl(widgetUrl)
         }
     }
 }
@@ -100,8 +104,10 @@ private extension MainTimerView {
 
 #Preview("通常時") {
     MainTimerView(viewModel: MainTimerViewModel())
+        .environmentObject(OpenUrlViewModel())
 }
 
 #Preview("最大表示可能経過時間超過時") {
     MainTimerView(viewModel: MainTimerViewModel(isOverMaxTime: true))
+        .environmentObject(OpenUrlViewModel())
 }
