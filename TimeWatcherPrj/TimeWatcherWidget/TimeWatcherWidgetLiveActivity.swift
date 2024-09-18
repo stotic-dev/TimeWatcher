@@ -80,7 +80,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
     private let actionButtonIconSize: CGFloat = 40
     private let shortTimeClockLineWidth: CGFloat = 2
     private let compactTextWidth: CGFloat = 65
-    private let expandedTextWidth: CGFloat = 100
+    private let expandedTextWidth: CGFloat = 110
     private let contentTimerTextWidth: CGFloat = 120
     
     // MARK: live activity view body property
@@ -101,6 +101,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
             .padding(.horizontal, liveActivityHorizontalPadding)
             .activityBackgroundTint(Color(CustomColor.primaryBackgroundColor))
             .activitySystemActionForegroundColor(Color(CustomColor.primaryForegroundColor))
+            .widgetURL(WidgetUrlKey.defaultLink.url)
         } dynamicIsland: { context in
             DynamicIsland { // MARK: Expanded View
                 DynamicIslandExpandedRegion(.leading) {
@@ -129,6 +130,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
             } minimal: { // MARK: Minimal View
                 createMiniStatusIconView(context.state.statusIcon)
             }
+            .widgetURL(WidgetUrlKey.defaultLink.url)
         }
     }
 }
@@ -141,15 +143,30 @@ private extension TimeWatcherWidgetLiveActivity {
     func createActionButtonView(useableActions: [TimerActionType], token: String) -> some View {
         HStack(spacing: actionButtonSpacing) {
             ForEach(useableActions, id: \.self) { type in
-                Button(intent: type.getIntent(token: token)) {
-                    Image(systemName: type.buttonIconName)
-                        .resizable()
-                        .padding(actionButtonIconPadding)
-                        .frame(width: actionButtonIconSize,
-                               height: actionButtonIconSize)
-                        .accessibilityHidden(true)
+                if type == .reset {
+                    Link(destination: WidgetUrlKey.timerResetLink.url) {
+                        Image(systemName: type.buttonIconName)
+                            .resizable()
+                            .padding(actionButtonIconPadding)
+                            .frame(width: actionButtonIconSize,
+                                   height: actionButtonIconSize)
+                            .accessibilityHidden(true)
+                            .foregroundStyle(Color(CustomColor.timerActionForegroundColor))
+                            .background(Color(CustomColor.timerActionBackgroundColor))
+                            .clipShape(Circle())
+                    }
                 }
-                .frameButtonStyle(radius: actionButtonIconSize / 2)
+                else {
+                    Button(intent: type.getIntent()) {
+                        Image(systemName: type.buttonIconName)
+                            .resizable()
+                            .padding(actionButtonIconPadding)
+                            .frame(width: actionButtonIconSize,
+                                   height: actionButtonIconSize)
+                            .accessibilityHidden(true)
+                    }
+                    .frameButtonStyle(radius: actionButtonIconSize / 2)
+                }
             }
         }
     }
@@ -190,9 +207,9 @@ private extension TimeWatcherWidgetLiveActivity {
 fileprivate extension TimerActionType {
     
     @MainActor
-    func getIntent(token: String) -> any AppIntent {
+    func getIntent() -> any AppIntent {
         
-        return switch self {
+        let result: (any AppIntent)? = switch self {
             
         case .start:
             TimerStartIntent()
@@ -200,9 +217,16 @@ fileprivate extension TimerActionType {
         case .stop:
             TimerStopIntent()
             
-        case .reset:
-            TimerResetIntent()
+        case .reset: nil
         }
+        
+        guard let result else {
+            
+            assertionFailure("Invalid type: \(self)")
+            return TimerStopIntent()
+        }
+        
+        return result
     }
 }
 
@@ -218,7 +242,7 @@ extension TimeWatcherWidgetAttributes {
 extension TimeWatcherWidgetAttributes.ContentState {
     
     fileprivate static var initial: TimeWatcherWidgetAttributes.ContentState {
-        return TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .hour, value: -12, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
+        return TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .hour, value: -99, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
                                                         timeLapseString: "01:12:12",
                                                         timerStatus: .initial)
     }
