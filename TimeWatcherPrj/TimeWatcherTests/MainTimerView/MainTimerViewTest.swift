@@ -48,7 +48,12 @@ final class MainTimerViewTest: XCTestCase {
         let testTimeWatch = TimeWatch(publisher: testTimerPublisher.eraseToAnyPublisher(),
                                       currentTime: dependencyDate)
         
-        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch)
+        let liveActivityManager = LiveActivityManagerMock(startProc: { _ in },
+                                                          updateProc: { _ in },
+                                                          stopProc: {})
+        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
+                                               liveActivityMgr: liveActivityManager,
+                                               dateDependency: dependencyDate)
         
         // 画面表示
         testViewModel.onAppear()
@@ -94,7 +99,12 @@ final class MainTimerViewTest: XCTestCase {
         
         let testTimeWatch = TimeWatch(publisher: testTimerPublisher.eraseToAnyPublisher(),
                                       currentTime: dependencyDate)
-        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch)
+        let liveActivityManager = LiveActivityManagerMock(startProc: { _ in },
+                                                          updateProc: { _ in },
+                                                          stopProc: {})
+        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
+                                               liveActivityMgr: liveActivityManager,
+                                               dateDependency: dependencyDate)
         
         // 画面表示
         testViewModel.onAppear()
@@ -168,7 +178,12 @@ final class MainTimerViewTest: XCTestCase {
         
         let testTimeWatch = TimeWatch(publisher: testTimerPublisher.eraseToAnyPublisher(),
                                       currentTime: dependencyDate)
-        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch)
+        let liveActivityManager = LiveActivityManagerMock(startProc: { _ in },
+                                                          updateProc: { _ in },
+                                                          stopProc: {})
+        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
+                                               liveActivityMgr: liveActivityManager,
+                                               dateDependency: dependencyDate)
         
         // 画面表示
         testViewModel.onAppear()
