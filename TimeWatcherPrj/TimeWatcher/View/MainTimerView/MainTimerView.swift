@@ -23,7 +23,7 @@ struct MainTimerView: View {
     private let displayTextAreaHeight: CGFloat = 300
     private let actionButtonSize: CGFloat = 80
     
-    private let displayTimeFontSize: CGFloat = 45
+    private let displayTimeFontSize: CGFloat = 40
     private let emergencyTextFontSize: CGFloat = 18
     private let actionButtonTextFontSize: CGFloat = 18
     
@@ -61,20 +61,26 @@ struct MainTimerView: View {
 private extension MainTimerView {
     
     func createTimerDisplayView() -> some View {
-        VStack(spacing: .zero) {
-            Text(viewModel.currentTimeString)
-                .font(.system(size: displayTimeFontSize, weight: .bold))
-                .foregroundStyle(Color(asset: CustomColor.timerTextColor))
-            if viewModel.isOverMaxTime {
-                Spacer()
-                    .frame(height: emergencyTextTopPadding)
-                Text("最大表経過時間を超過しているため、これ以上は計測できません。")
-                    .font(.system(size: emergencyTextFontSize))
-                    .foregroundStyle(Color(CustomColor.emergencyColor))
-                    .padding(.horizontal, emergencyTextHorizontalPadding)
+        ZStack {
+            TimerClockAnimationView(progress: viewModel.timeProgressPerMinute,
+                                    size: .infinity)
+            VStack(spacing: .zero) {
+                Text(viewModel.currentTimeString)
+                    .font(.system(size: displayTimeFontSize,
+                                  weight: .bold))
+                    .foregroundStyle(Color(asset: CustomColor.timerTextColor))
+                if viewModel.isOverMaxTime {
+                    Spacer()
+                        .frame(height: emergencyTextTopPadding)
+                    Text("最大表経過時間を超過しているため、これ以上は計測できません。")
+                        .font(.system(size: emergencyTextFontSize))
+                        .foregroundStyle(Color(CustomColor.emergencyColor))
+                        .padding(.horizontal, emergencyTextHorizontalPadding)
+                }
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: displayTextAreaHeight)
+        .frame(maxWidth: .infinity,
+               maxHeight: displayTextAreaHeight)
     }
     
     func createTimerActionView() -> some View {

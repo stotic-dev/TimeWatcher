@@ -18,6 +18,12 @@ class MainTimerViewModel: ObservableObject {
     @Published var currentTimeString = "00:00:00.000"
     @Published var isOverMaxTime = false
     
+    // 1分基準の経過時間の進捗
+    var timeProgressPerMinute: Double {
+        
+        return currentTimeLapse / 10
+    }
+    
     // MARK: dependency property
     
     private var timeWatch: TimeWatch
@@ -34,12 +40,6 @@ class MainTimerViewModel: ObservableObject {
     private var updateLiveActivityRequestTasks = Set<Task<Void, Never>>()
     // タイマー状態監視用のキャンセラブル
     private var timerStatusObserveCancellable: AnyCancellable?
-    
-    // 1分基準の経過時間の進捗
-    private var timeProgressPerMinute: Double {
-        
-        return currentTimeLapse / 60
-    }
     
     // 表示最大可能時間
     private var maxDisplayTime: TimeInterval {
