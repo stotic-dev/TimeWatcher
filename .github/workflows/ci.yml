@@ -65,5 +65,6 @@ jobs:
           -scmProvider xcode
           -allowProvisioningUpdates
           -skipPackagePluginValidation
+          -parallel-testing-enabled NO
           clean test |
           bundle exec xcpretty

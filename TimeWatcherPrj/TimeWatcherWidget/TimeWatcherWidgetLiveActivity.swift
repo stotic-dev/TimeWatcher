@@ -80,7 +80,7 @@ struct TimeWatcherWidgetLiveActivity: Widget {
     private let actionButtonIconSize: CGFloat = 40
     private let shortTimeClockLineWidth: CGFloat = 2
     private let compactTextWidth: CGFloat = 65
-    private let expandedTextWidth: CGFloat = 100
+    private let expandedTextWidth: CGFloat = 110
     private let contentTimerTextWidth: CGFloat = 120
     
     // MARK: live activity view body property
@@ -242,7 +242,7 @@ extension TimeWatcherWidgetAttributes {
 extension TimeWatcherWidgetAttributes.ContentState {
     
     fileprivate static var initial: TimeWatcherWidgetAttributes.ContentState {
-        return TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .hour, value: -12, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
+        return TimeWatcherWidgetAttributes.ContentState(timeLapse: Calendar.current.date(byAdding: .hour, value: -99, to: Date.now)!...Calendar.current.date(byAdding: .hour, value: 100, to: Date.now)!,
                                                         timeLapseString: "01:12:12",
                                                         timerStatus: .initial)
     }
