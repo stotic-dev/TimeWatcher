@@ -18,6 +18,7 @@ struct TimerClockAnimationView: View {
     // MARK: - input parameter
     
     private let progress: Double
+    @State private var postProgress: Double = .zero
     @State private var progressAngle: CGFloat = .zero
     
     private let size: CGFloat
@@ -56,25 +57,28 @@ struct TimerClockAnimationView: View {
                 .stroke(lineWidth: lineWidth)
                 .rotation(.degrees(initialPointDegrees))
                 .foregroundStyle(progressColor.opacity(unProgressAreaOpacity))
-                .frame(width: size, height: size)
+                .frame(maxWidth: size, maxHeight: size)
             Circle()
                 .trim(from: startPoint, to: progressPoint)
                 .stroke(lineWidth: lineWidth)
                 .rotation(.degrees(initialPointDegrees))
                 .foregroundStyle(progressColor)
-                .frame(width: size, height: size)
+                .frame(maxWidth: size, maxHeight: size)
                 .animation(.spring, value: progress)
         }
         .rotationEffect(.degrees(progressAngle))
-        .onChange(of: progress) { oldValue, newValue in
-            if floor(oldValue) != floor(newValue) {
+        .onChange(of: progress) { _, newValue in
+            if floor(postProgress) != floor(newValue) {
                 withAnimation(.spring) {
+//                    print("withAnimation oldValue=\(postProgress), newValue=\(newValue)")
                     progressAngle += progressRotationAngle
                 }
             }
             else {
+//                print("oldValue=\(postProgress), newValue=\(newValue)")
                 progressAngle = .zero
             }
+            postProgress = newValue
         }
     }
 }
@@ -95,9 +99,19 @@ struct TimerClockAnimationView: View {
                     .frame(height: 20)
                 HStack {
                     Button {
+                        progress += 0.99
+                    } label: {
+                        Text("+ 0.99")
+                    }
+                    Button {
                         progress += 0.1
                     } label: {
-                        Text("Start")
+                        Text("+ 0.1")
+                    }
+                    Button {
+                        progress += 0.001
+                    } label: {
+                        Text("+ 0.001")
                     }
                 }
             }
