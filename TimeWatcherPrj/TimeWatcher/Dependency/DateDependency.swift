@@ -7,17 +7,19 @@
 
 import Foundation
 
-class DateDependency {
+final class DateDependency: @unchecked Sendable {
     
     var now: Date?
+    private let isTest: Bool
     
-    init(now: Date? = nil) {
+    init(now: Date? = nil, isTest: Bool = false) {
         
         self.now = now
+        self.isTest = isTest
     }
     
     func generateNow() -> Date {
         
-        return now ?? Date.now
+        return isTest ? now ?? Date.now : Date.now
     }
 }

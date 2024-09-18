@@ -11,6 +11,11 @@ import Foundation
 @MainActor
 class TimeWatch {
     
+    static let shared = TimeWatch()
+    
+    /// タイマーの起動状態監視用のPublisher
+    private let timerStatusPublisher = CurrentValueSubject<TimerStatus, Never>(.initial)
+    
     /// 現在の時間
     private var currentTime: DateDependency
     /// タイマーを開始した時の時間
@@ -23,6 +28,8 @@ class TimeWatch {
     private let timerPublisher: AnyPublisher<Date, Never>
     /// タイマー監視用のキャンセラブル
     private var timerCancellable: AnyCancellable?
+    /// 現在の総経過時間
+    private var currentTimeLapse: TimeInterval = .zero
     
     /// 時間計測の間隔
     private static let timeWatchInterval = 0.001
@@ -57,6 +64,13 @@ class TimeWatch {
         logger.info("[In]")
     }
     
+    /// タイマー状態監視用のPublisherを返す
+    func createTimerStatusPublisher() -> AnyPublisher<TimerStatus, Never> {
+        
+        return timerStatusPublisher.eraseToAnyPublisher()
+    }
+    
+    /// timeWatchIntervalの間隔ごとに経過時間を通知するクロージャを設定する
     func setTimerHandler(timeLapseHandler: @escaping (TimeInterval) -> Void) {
         
         self.timeLapseHandler = timeLapseHandler
@@ -64,6 +78,9 @@ class TimeWatch {
     
     /// タイムウォッチを開始する
     func startTimer() {
+        
+        // 状態更新
+        timerStatusPublisher.send(.start)
         
         self.startTime = currentTime.generateNow()
         
@@ -75,6 +92,9 @@ class TimeWatch {
     
     /// タイムウォッチを終了する
     func stopTimer() {
+        
+        // 状態更新
+        timerStatusPublisher.send(.stop)
         
         // 現在のタイマーを停止する
         timerCancellable?.cancel()
@@ -95,6 +115,9 @@ class TimeWatch {
     /// タイムウォッチを終了して、経過時間を0に戻す
     func resetTimer() {
         
+        // 状態更新
+        timerStatusPublisher.send(.initial)
+        
         // 現在のタイマーを停止する
         timerCancellable?.cancel()
         
@@ -103,6 +126,12 @@ class TimeWatch {
         
         // 外部にリセットした計測時間を送信する
         timeLapseHandler?(.zero)
+    }
+    
+    /// 現在の経過時間総計を返す
+    func getCurrentTimeLapse() -> TimeInterval {
+        
+        return currentTimeLapse
     }
 }
 
@@ -117,9 +146,10 @@ private extension TimeWatch {
             guard let self = self,
                   let startTime = self.startTime else { return }
             
-            logger.debug("receive time: \(date.toStringDate()), startDate: \(startTime.toStringDate())")
+            // 現在の総経過時間の更新
+            currentTimeLapse = date.timeIntervalSince(startTime) + (addedTime ?? .zero)
             // 経過時間を外部に連携
-            self.timeLapseHandler?(date.timeIntervalSince(startTime) + (addedTime ?? .zero))
+            self.timeLapseHandler?(currentTimeLapse)
         }
     }
 }
