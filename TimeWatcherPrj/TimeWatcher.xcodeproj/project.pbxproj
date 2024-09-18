@@ -66,6 +66,7 @@
 		BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD922C91429900F3AC29 /* TimerStatus.swift */; };
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
+		BC6E15B52C9AF32F00D518AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6E15B42C9AF32F00D518AF /* LaunchScreen.storyboard */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 /* End PBXBuildFile section */
@@ -151,6 +152,7 @@
 		BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUrlKey.swift; sourceTree = "<group>"; };
 		BC57C0F62C9A8D1700786503 /* OpenUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModel.swift; sourceTree = "<group>"; };
 		BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModelTest.swift; sourceTree = "<group>"; };
+		BC6E15B42C9AF32F00D518AF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -337,6 +339,7 @@
 				BC4B662E2C955A40004C3EEF /* ViewParts */,
 				BCF25BC12C9AC369002133A4 /* RootView */,
 				BC3FCD8E2C913FCE00F3AC29 /* MainTimerView */,
+				BC6E15B42C9AF32F00D518AF /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC6E15B52C9AF32F00D518AF /* LaunchScreen.storyboard in Resources */,
 				BC3FCDA12C91507900F3AC29 /* Asset.xcassets in Resources */,
 				BC3FCD6C2C913E2B00F3AC29 /* Preview Assets.xcassets in Resources */,
 			);
@@ -914,6 +918,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimeWatcher/Preview Content\"";
@@ -924,6 +929,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -946,6 +952,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TimeWatcher/Preview Content\"";
@@ -956,6 +963,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
