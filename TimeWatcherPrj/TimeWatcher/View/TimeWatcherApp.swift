@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct TimeWatcherApp: App {
+    
     var body: some Scene {
         WindowGroup {
             MainTimerView(viewModel: MainTimerViewModel())
+                .onOpenURL { url in
+                    logger.info("URL: \(url)")
+                }
         }
     }
 }

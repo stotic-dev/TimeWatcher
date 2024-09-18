@@ -59,6 +59,8 @@
 		BC57C0EC2C996B9500786503 /* TimerStartIntentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0EB2C996B9500786503 /* TimerStartIntentTest.swift */; };
 		BC57C0EF2C99C69900786503 /* TestUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0EE2C99C69900786503 /* TestUtilities.swift */; };
 		BC57C0F12C99CDED00786503 /* TimerStopIntentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F02C99CDED00786503 /* TimerStopIntentTest.swift */; };
+		BC57C0F42C9A7A0200786503 /* WidgetUrlKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */; };
+		BC57C0F52C9A801400786503 /* WidgetUrlKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */; };
 		BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD922C91429900F3AC29 /* TimerStatus.swift */; };
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
@@ -144,6 +146,7 @@
 		BC57C0EB2C996B9500786503 /* TimerStartIntentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartIntentTest.swift; sourceTree = "<group>"; };
 		BC57C0EE2C99C69900786503 /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
 		BC57C0F02C99CDED00786503 /* TimerStopIntentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopIntentTest.swift; sourceTree = "<group>"; };
+		BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUrlKey.swift; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,6 +205,7 @@
 		BC057EC02C94758F0030C275 /* TimeWatcherWidget */ = {
 			isa = PBXGroup;
 			children = (
+				BC57C0F22C9A524500786503 /* Definition */,
 				BC57C0D12C990DC700786503 /* Intent */,
 				BC057EC12C94758F0030C275 /* TimeWatcherWidgetBundle.swift */,
 				BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */,
@@ -421,6 +425,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		BC57C0F22C9A524500786503 /* Definition */ = {
+			isa = PBXGroup;
+			children = (
+				BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */,
+			);
+			path = Definition;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -601,6 +613,7 @@
 				BC57C0E92C99480800786503 /* TimeInterval+Extension.swift in Sources */,
 				BC57C0D72C991C0500786503 /* DateDependency.swift in Sources */,
 				BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */,
+				BC57C0F52C9A801400786503 /* WidgetUrlKey.swift in Sources */,
 				BC04009A2C949BD3003558DB /* FrameButtonStyle.swift in Sources */,
 				BC57C0DD2C991D5700786503 /* TimerControlable.swift in Sources */,
 				BC057EC22C94758F0030C275 /* TimeWatcherWidgetBundle.swift in Sources */,
@@ -631,6 +644,7 @@
 				BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */,
 				BC4B66302C955B1B004C3EEF /* LiveActivityManager.swift in Sources */,
 				BC3FCD932C91429900F3AC29 /* TimerStatus.swift in Sources */,
+				BC57C0F42C9A7A0200786503 /* WidgetUrlKey.swift in Sources */,
 				BC3FCD952C9142BF00F3AC29 /* TimerActionType.swift in Sources */,
 				BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */,
 				BC3FCDA32C91527100F3AC29 /* FrameButtonStyle.swift in Sources */,
