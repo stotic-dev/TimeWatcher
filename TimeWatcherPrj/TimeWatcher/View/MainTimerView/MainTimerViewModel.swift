@@ -73,6 +73,8 @@ class MainTimerViewModel: ObservableObject {
     /// 画面表示時の処理
     func onAppear() {
         
+        logger.info("[In]")
+        
         // TimerStatusの監視
         addObserveTimerStatus()
     }
@@ -86,14 +88,27 @@ class MainTimerViewModel: ObservableObject {
         switch type {
             
         case .start:
-            tappedStartTimerButton()
+            startTimer()
             
         case .stop:
-            tappedStopTimerButton()
+            stopTimer()
             
         case .reset:
-            tappedResetTimerButton()
+            resetTimer()
         }
+    }
+    
+    /// LiveActivityのDeepLinkでアプリが開かれたことを検知
+    /// - Parameter url: LiveActivityから開かれるURLのKey
+    func onOpenLiveActivityUrl(_ url: WidgetUrlKey) {
+        
+        logger.info("url: \(url)")
+        
+        // リセット以外のリンクの場合は、特に実行する処理はないため無視する
+        if url != .timerResetLink { return }
+        
+        // タイマーをリセットする
+        resetTimer()
     }
 }
 
@@ -103,6 +118,8 @@ class MainTimerViewModel: ObservableObject {
 private extension MainTimerViewModel {
     
     func addObserveTimerStatus() {
+        
+        logger.info("[In]")
         
         timerStatusObserveCancellable = timeWatch.createTimerStatusPublisher()
             .receive(on: DispatchQueue.main)
@@ -115,8 +132,10 @@ private extension MainTimerViewModel {
             }
     }
     
-    /// タイマー開始ボタン押下
-    func tappedStartTimerButton() {
+    /// タイマー開始
+    func startTimer() {
+        
+        logger.info("[In]")
         
         timeWatch.startTimer()
         
@@ -141,8 +160,10 @@ private extension MainTimerViewModel {
         }
     }
     
-    /// タイマー停止ボタン押下
-    func tappedStopTimerButton() {
+    /// タイマー停止
+    func stopTimer() {
+        
+        logger.info("[In]")
         
         // 現在リクエストしているTaskをすべてキャンセルする
         cancelLiveActivityTask()
@@ -165,8 +186,10 @@ private extension MainTimerViewModel {
         }
     }
     
-    /// タイマーリセットボタン押下
-    func tappedResetTimerButton() {
+    /// タイマーリセット
+    func resetTimer() {
+        
+        logger.info("[In]")
         
         // 現在リクエストしているTaskをすべてキャンセルする
         cancelLiveActivityTask()

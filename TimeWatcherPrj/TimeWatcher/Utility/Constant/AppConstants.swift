@@ -11,7 +11,7 @@ struct AppConstants {
     
     // MARK: - アプリ共通
     
-    static let bundleId = Bundle.main.bundleIdentifier ?? "taichi.sato.dummy"
+    static let mainBundleId = "taichi.satou.TimeWatcher"
     
     // MARK: - ウォッチ関連のプロパティ
     

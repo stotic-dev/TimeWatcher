@@ -61,6 +61,8 @@
 		BC57C0F12C99CDED00786503 /* TimerStopIntentTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F02C99CDED00786503 /* TimerStopIntentTest.swift */; };
 		BC57C0F42C9A7A0200786503 /* WidgetUrlKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */; };
 		BC57C0F52C9A801400786503 /* WidgetUrlKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */; };
+		BC57C0F72C9A8D1700786503 /* OpenUrlViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0F62C9A8D1700786503 /* OpenUrlViewModel.swift */; };
+		BC57C0FC2C9A938900786503 /* OpenUrlViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */; };
 		BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD922C91429900F3AC29 /* TimerStatus.swift */; };
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
@@ -147,6 +149,8 @@
 		BC57C0EE2C99C69900786503 /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
 		BC57C0F02C99CDED00786503 /* TimerStopIntentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopIntentTest.swift; sourceTree = "<group>"; };
 		BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUrlKey.swift; sourceTree = "<group>"; };
+		BC57C0F62C9A8D1700786503 /* OpenUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModel.swift; sourceTree = "<group>"; };
+		BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModelTest.swift; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -262,6 +266,7 @@
 		BC3FCD742C913E2B00F3AC29 /* TimeWatcherTests */ = {
 			isa = PBXGroup;
 			children = (
+				BC57C0F82C9A935400786503 /* RootView */,
 				BC57C0ED2C99C68700786503 /* Utilities */,
 				BC57C0EA2C996B6D00786503 /* TimerWatcherWidgetIntent */,
 				BC057EB12C92801B0030C275 /* MainTimerView */,
@@ -330,7 +335,7 @@
 			isa = PBXGroup;
 			children = (
 				BC4B662E2C955A40004C3EEF /* ViewParts */,
-				BC3FCD642C913E2900F3AC29 /* TimeWatcherApp.swift */,
+				BCF25BC12C9AC369002133A4 /* RootView */,
 				BC3FCD8E2C913FCE00F3AC29 /* MainTimerView */,
 			);
 			path = View;
@@ -431,6 +436,23 @@
 				BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */,
 			);
 			path = Definition;
+			sourceTree = "<group>";
+		};
+		BC57C0F82C9A935400786503 /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */,
+			);
+			path = RootView;
+			sourceTree = "<group>";
+		};
+		BCF25BC12C9AC369002133A4 /* RootView */ = {
+			isa = PBXGroup;
+			children = (
+				BC3FCD642C913E2900F3AC29 /* TimeWatcherApp.swift */,
+				BC57C0F62C9A8D1700786503 /* OpenUrlViewModel.swift */,
+			);
+			path = RootView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -639,6 +661,7 @@
 				BC4B66332C959A72004C3EEF /* TimeInterval+Extension.swift in Sources */,
 				BC3FCD672C913E2900F3AC29 /* MainTimerView.swift in Sources */,
 				BC3FCDAC2C918A4300F3AC29 /* TimeWatch.swift in Sources */,
+				BC57C0F72C9A8D1700786503 /* OpenUrlViewModel.swift in Sources */,
 				BC57C0E32C99349600786503 /* TimerControlable.swift in Sources */,
 				BC4B66352C95AF0F004C3EEF /* Calendar+Extension.swift in Sources */,
 				BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */,
@@ -665,6 +688,7 @@
 				BC57C0EF2C99C69900786503 /* TestUtilities.swift in Sources */,
 				BC57C0EC2C996B9500786503 /* TimerStartIntentTest.swift in Sources */,
 				BC57C0F12C99CDED00786503 /* TimerStopIntentTest.swift in Sources */,
+				BC57C0FC2C9A938900786503 /* OpenUrlViewModelTest.swift in Sources */,
 				BC057EB32C9280470030C275 /* MainTimerViewTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
