@@ -517,6 +517,148 @@ final class MainTimerViewTest: XCTestCase {
         
         wait(for: [endLiveActivityExpectation], timeout: 1)
     }
+    
+    /// Start中のLiveActivityのリセットボタン押下時の動作確認
+    ///
+    /// ## 確認ポイント
+    /// - タイマー開始中にLiveActivityのリセットを謳歌するとリセット処理が行われること
+    @MainActor
+    func testTimerResetFromWidgetUrlOnStart() throws {
+        
+        let testTimeWatch = TimeWatch(publisher: testTimerPublisher.eraseToAnyPublisher(),
+                                      currentTime: dependencyDate)
+        // LiveActivityのstart - endまで1回ずつ呼び出されること
+        let startLiveActivityExpectation = XCTestExpectation(description: "startLiveActivityExpectation")
+        startLiveActivityExpectation.expectedFulfillmentCount = 1
+        let updateLiveActivityExpectation = XCTestExpectation(description: "updateLiveActivityExpectation")
+        updateLiveActivityExpectation.expectedFulfillmentCount = 1
+        let updateStopLiveActivityExpectation = XCTestExpectation(description: "updateStopLiveActivityExpectation")
+        updateStopLiveActivityExpectation.isInverted = true
+        let endLiveActivityExpectation = XCTestExpectation(description: "endLiveActivityExpectation")
+        endLiveActivityExpectation.expectedFulfillmentCount = 1
+        
+        let liveActivityManager = setupLiveActivityManagerMock(startExpectation: startLiveActivityExpectation,
+                                                               updateTimeExpectation: updateLiveActivityExpectation,
+                                                               updateStopExpectation: updateStopLiveActivityExpectation,
+                                                               endExpectation: endLiveActivityExpectation,
+                                                               expectedTimeLapseComponent: [
+                                                                [.second: -9],
+                                                               ],
+                                                               expectedTimeLapseMilliSec: [0],
+                                                               expectedTimeLapseString: [
+                                                                "00:00:09"
+                                                               ])
+        
+        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
+                                               liveActivityMgr: liveActivityManager,
+                                               dateDependency: dependencyDate)
+        
+        // 画面表示
+        testViewModel.onAppear()
+        
+        // ウォッチの状態が初期状態になっていることの確認
+        checkTimerState(testViewModel, expected: .initial)
+        
+        // タイムウォッチ開始
+        dependencyDate.now = currentDate
+        testViewModel.tappedTimerActionButton(.start)
+        
+        // ウォッチの状態が開始状態になっていることの確認
+        checkTimerState(testViewModel, expected: .start)
+        
+        wait(for: [startLiveActivityExpectation], timeout: 1)
+        
+        // 経過時間表示文字が正しく更新されていることを確認
+        checkDisplayStringAfterTimeLapse(testViewModel: testViewModel,
+                                         addingSec: 9,
+                                         expected: "00:00:09.000")
+        
+        wait(for: [updateLiveActivityExpectation], timeout: 1)
+        
+        // リセットのURLでアプリが開かれたことを検知
+        testViewModel.onOpenLiveActivityUrl(.timerResetLink)
+        
+        // ウォッチの状態が初期状態になっていることの確認
+        checkTimerState(testViewModel, expected: .initial)
+        
+        wait(for: [endLiveActivityExpectation, updateStopLiveActivityExpectation], timeout: 1)
+    }
+    
+    /// Stop中のLiveActivityのリセットボタン押下時の動作確認
+    ///
+    /// ## 確認ポイント
+    /// - タイマー停止中にLiveActivityのリセットを謳歌するとリセット処理が行われること
+    @MainActor
+    func testTimerResetFromWidgetUrlOnStop() throws {
+        
+        let testTimeWatch = TimeWatch(publisher: testTimerPublisher.eraseToAnyPublisher(),
+                                      currentTime: dependencyDate)
+        // LiveActivityのstart - endまで1回ずつ呼び出されること
+        let startLiveActivityExpectation = XCTestExpectation(description: "startLiveActivityExpectation")
+        startLiveActivityExpectation.expectedFulfillmentCount = 1
+        let updateLiveActivityExpectation = XCTestExpectation(description: "updateLiveActivityExpectation")
+        updateLiveActivityExpectation.expectedFulfillmentCount = 1
+        let updateStopLiveActivityExpectation = XCTestExpectation(description: "updateStopLiveActivityExpectation")
+        updateStopLiveActivityExpectation.expectedFulfillmentCount = 1
+        let endLiveActivityExpectation = XCTestExpectation(description: "endLiveActivityExpectation")
+        endLiveActivityExpectation.expectedFulfillmentCount = 1
+        
+        let liveActivityManager = setupLiveActivityManagerMock(startExpectation: startLiveActivityExpectation,
+                                                               updateTimeExpectation: updateLiveActivityExpectation,
+                                                               updateStopExpectation: updateStopLiveActivityExpectation,
+                                                               endExpectation: endLiveActivityExpectation,
+                                                               expectedTimeLapseComponent: [
+                                                                [.second: -9],
+                                                                [.second: -9]
+                                                               ],
+                                                               expectedTimeLapseMilliSec: [0, 0],
+                                                               expectedTimeLapseString: [
+                                                                "00:00:09",
+                                                                "00:00:09"
+                                                               ])
+        
+        let testViewModel = MainTimerViewModel(timeWatch: testTimeWatch,
+                                               liveActivityMgr: liveActivityManager,
+                                               dateDependency: dependencyDate)
+        
+        // 画面表示
+        testViewModel.onAppear()
+        
+        // ウォッチの状態が初期状態になっていることの確認
+        checkTimerState(testViewModel, expected: .initial)
+        
+        // タイムウォッチ開始
+        dependencyDate.now = currentDate
+        testViewModel.tappedTimerActionButton(.start)
+        
+        // ウォッチの状態が開始状態になっていることの確認
+        checkTimerState(testViewModel, expected: .start)
+        
+        wait(for: [startLiveActivityExpectation], timeout: 1)
+        
+        // 経過時間表示文字が正しく更新されていることを確認
+        checkDisplayStringAfterTimeLapse(testViewModel: testViewModel,
+                                         addingSec: 9,
+                                         expected: "00:00:09.000")
+        
+        wait(for: [updateLiveActivityExpectation], timeout: 1)
+        
+        // ウォッチの停止
+        testViewModel.tappedTimerActionButton(.stop)
+        
+        // ウォッチの状態が停止状態になっていることの確認
+        checkTimerState(testViewModel, expected: .stop)
+        
+        wait(for: [updateStopLiveActivityExpectation], timeout: 1)
+        
+        // リセットのURLでアプリが開かれたことを検知
+        testViewModel.onOpenLiveActivityUrl(.timerResetLink)
+        
+        // ウォッチの状態が初期状態になっていることの確認
+        checkTimerState(testViewModel, expected: .initial)
+        
+        wait(for: [endLiveActivityExpectation], timeout: 1)
+    }
 }
 
 // MARK: - セットアップ機能

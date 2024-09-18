@@ -22,13 +22,13 @@ extension WidgetUrlKey {
     
     private static var defaultURL: URL {
         
-        return URL(string: "\(scheme)\(AppConstants.bundleId)")!
+        return URL(string: "\(scheme)\(AppConstants.mainBundleId)")!
     }
     
     /// Keyに紐づくWidgetURL
     var url: URL {
         
-        return URL(string: "\(Self.scheme)\(AppConstants.bundleId)\(self.path)") ?? Self.defaultURL
+        return URL(string: "\(Self.scheme)\(AppConstants.mainBundleId)\(self.path)") ?? Self.defaultURL
     }
     
     var path: String {
