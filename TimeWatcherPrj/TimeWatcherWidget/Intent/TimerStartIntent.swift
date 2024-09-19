@@ -15,6 +15,7 @@ struct TimerStartIntent: AppIntent, TimerControlable {
     private(set) var timeWatch: TimeWatch
     private(set) var dateDependency: DateDependency
     
+    @preconcurrency
     @MainActor
     init() {
         
