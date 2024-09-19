@@ -6,10 +6,22 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        FirebaseApp.configure()
+        return true
+    }
+}
 
 @main
 @MainActor
 struct TimeWatcherApp: App {
+    
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     // Deep Linkで開かれた際の情報を持つViewModel
     private var openUrlViewModel = OpenUrlViewModel()
