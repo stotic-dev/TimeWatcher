@@ -15,6 +15,7 @@ struct TimerResetIntent: AppIntent {
     private(set) var timeWatch: TimeWatch
     private let liveActivityManager: LiveActivityManaging
     
+    @preconcurrency
     @MainActor
     init() {
         
