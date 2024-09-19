@@ -15,6 +15,7 @@ struct TimerStopIntent: AppIntent, TimerControlable {
     private(set) var liveActivityManager: LiveActivityManaging
     private(set) var dateDependency: DateDependency
     
+    @preconcurrency
     @MainActor
     init() {
         
