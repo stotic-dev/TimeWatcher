@@ -71,6 +71,7 @@
 		BC6E15B82C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
+		BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +157,7 @@
 		BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModelTest.swift; sourceTree = "<group>"; };
 		BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
+		BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,6 +344,7 @@
 				BC4B662E2C955A40004C3EEF /* ViewParts */,
 				BCF25BC12C9AC369002133A4 /* RootView */,
 				BC3FCD8E2C913FCE00F3AC29 /* MainTimerView */,
+				BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -608,6 +611,7 @@
 				BC6E15B52C9AF32F00D518AF /* (null) in Resources */,
 				BC6E15B72C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */,
 				BC3FCDA12C91507900F3AC29 /* Asset.xcassets in Resources */,
+				BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */,
 				BC3FCD6C2C913E2B00F3AC29 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

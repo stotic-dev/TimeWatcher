@@ -29,7 +29,7 @@ Package.resolved
 # hence it is not needed unless you have added a package configuration file to your project
 .swiftpm
 
-.build/
+.build/*
 
 # CocoaPods
 #
@@ -62,4 +62,4 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 
 # secret files
-secret/
+secret/*
