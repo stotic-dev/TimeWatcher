@@ -6,4 +6,4 @@ output_directory("./.build")    # store the ipa in this folder
 output_name("TimeWatcher")  # the name of the ipa file
 include_bitcode(true)
 export_method("app-store")
-export_options("./ExportOptions.plist")
+export_options("./secret/ExportOptions.plist")
