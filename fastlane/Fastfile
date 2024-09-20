@@ -15,9 +15,41 @@
 
 default_platform(:ios)
 
+before_all do |lane, options|
+end
+
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+
+  desc "do test"
+  lane :test do |options|
+    scan
   end
+
+  desc "Upload to TestFlight"
+  lane :beta do
+    scan
+    gym
+    upload_beta
+  end
+
+  #hidden from lanes,list,docs
+  desc "Upload ipa for TestFlight"
+  lane :upload_beta do |options|
+    upload_to_testflight(
+      api_key_path: "secret/appConnectApiKey.json",
+      ipa: "./.build/TimeWatcher.ipa",
+      demo_account_required: false,
+      skip_waiting_for_build_processing: "true",
+      beta_app_review_info: {
+        contact_email: "taichis844@gmail.com",
+        contact_first_name: "Taichi",
+        contact_last_name: "Satou",
+        contact_phone: "080-9754-8211",
+        notes: "TimeWatcherの内部テスト"
+      }
+    )
+  end
+end
+
+after_all do |lane, options|
 end
