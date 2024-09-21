@@ -5,10 +5,11 @@
 //  Created by 佐藤汰一 on 2024/09/12.
 //
 
+import ActivityKit
 import Combine
 import XCTest
+
 @testable import TimeWatcher
-import ActivityKit
 
 final class MainTimerViewTest: XCTestCase {
     
