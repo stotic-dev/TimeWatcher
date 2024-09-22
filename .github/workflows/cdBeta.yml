@@ -51,7 +51,16 @@ jobs:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
+      # ipaファイル作成のためのSignning用のファイル配置
+      - name: Create ExportOptions Info
+        run: |
+          mkdir ${{ env.EXPORT_OPTIONS_PLIST_FILE_PATH }}
+          echo ${{ secrets.EXPORT_OPTIONS_FILE_TEXT }} >${{ env.EXPORT_OPTIONS_PLIST_FILE_PATH }}
       # TestFlight用にデプロイ
       - name: deploy
         run: set -o pipefail &&
           bundle exec fastlane beta --verbose
+        env:
+          APP_CONNECT_API_ISSUER_ID: ${{ secrets.APP_CONNECT_API_ISSUER_ID }}
+          APP_CONNECT_API_KEY_ID: ${{ secrets.APP_CONNECT_API_KEY_ID }}
+          APP_CONNECT_API_PRIVATE_KEY: ${{ secrets.APP_CONNECT_API_PRIVATE_KEY }}
