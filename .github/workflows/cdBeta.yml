@@ -11,7 +11,8 @@ env:
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
-  EXPORT_OPTIONS_PLIST_FILE_PATH: ./secret/ExportOptions.plist
+  SECRET_DIR: ./secret
+  EXPORT_OPTIONS_PLIST_FILE_NAME: ExportOptions.plist
 
 jobs:
   build:
@@ -55,8 +56,8 @@ jobs:
       # ipaファイル作成のためのSignning用のファイル配置
       - name: Create ExportOptions Info
         run: |
-          mkdir ${{ env.EXPORT_OPTIONS_PLIST_FILE_PATH }}
-          echo ${{ secrets.EXPORT_OPTIONS_FILE_TEXT }} >${{ env.EXPORT_OPTIONS_PLIST_FILE_PATH }}
+          mkdir ${{ env.SECRET_DIR }}
+          echo ${{ secrets.EXPORT_OPTIONS_FILE_TEXT }} >"${{ env.SECRET_DIR }}/${{ env.EXPORT_OPTIONS_PLIST_FILE_NAME }}}"
       # TestFlight用にデプロイ
       - name: deploy
         run: set -o pipefail &&
