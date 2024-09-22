@@ -11,6 +11,7 @@ env:
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
+  EXPORT_OPTIONS_PLIST_FILE_PATH: ./secret/ExportOptions.plist
 
 jobs:
   build:
