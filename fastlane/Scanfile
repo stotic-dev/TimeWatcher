@@ -1,0 +1,8 @@
+workspace("TimerWatcherWorkspace.xcworkspace")
+scheme("TimeWatcher")
+clean(true)
+configuration("Debug")
+disable_concurrent_testing(true)
+output_directory("./.build")
+destination("platform=iOS Simulator,name=iPhone 16")
+cloned_source_packages_path("SourcePackages")

@@ -1,0 +1,66 @@
+name: CD_Beta_Time_Watcher
+
+on:
+  pull_request:
+    branches:
+      - "release/*"
+  workflow_dispatch:
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_15.0.app
+  WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
+  TARGET_SCHEME_NAME: TimeWatcher
+  TARGET_TEST_PLAN_NAME: TimeWatcher
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      # チェックアウト(リポジトリからソースコードを取得)
+      - name: Check Out repository
+        uses: actions/checkout@v3
+
+      # Xcodeの一覧出力
+      - name: Show Xcode list
+        run: ls /Applications | grep 'Xcode'
+
+      # Xcodeのバージョン出力
+      - name: Show Xcode version
+        run: xcodebuild -version
+
+      # Rudy製ライブラリのキャッシュ
+      - name: Cache Gems
+        uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+
+      # Rudy製ライブラリのインストール
+      - name: Install Bundled Gems
+        run: |
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+
+      # SPMのライブラリのキャッシュ
+      - name: Cache Swift Packages
+        uses: actions/cache@v2
+        with:
+          path: SourcePackages
+          key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: ${{ runner.os }}-spm-
+      # ipaファイル作成のためのSignning用のファイル配置
+      - name: Create ExportOptions Info
+        run: |
+          mkdir ${{ env.EXPORT_OPTIONS_PLIST_FILE_PATH }}
+          echo ${{ secrets.EXPORT_OPTIONS_FILE_TEXT }} >${{ env.EXPORT_OPTIONS_PLIST_FILE_PATH }}
+      # TestFlight用にデプロイ
+      - name: deploy
+        run: set -o pipefail &&
+          bundle exec fastlane beta --verbose
+        env:
+          APP_CONNECT_API_ISSUER_ID: ${{ secrets.APP_CONNECT_API_ISSUER_ID }}
+          APP_CONNECT_API_KEY_ID: ${{ secrets.APP_CONNECT_API_KEY_ID }}
+          APP_CONNECT_API_PRIVATE_KEY: ${{ secrets.APP_CONNECT_API_PRIVATE_KEY }}
