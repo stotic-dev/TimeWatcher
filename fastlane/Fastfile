@@ -16,8 +16,8 @@
 default_platform(:ios)
 
 before_all do |lane, options|
-  if lane == :beta && ENV[ENVIRONMENT] == "CI"
-    setup_ci(provider: ENV[SETUP_CI_PROVIDER])
+  if lane == :beta && ENV["ENVIRONMENT"] == "CI"
+    setup_ci(provider: ENV["SETUP_CI_PROVIDER"])
   end
 end
 
@@ -33,10 +33,10 @@ platform :ios do
     scan
     fetch_appstore_profiles
     gym
-    increment_build_number
-    upload_beta
-    commit_version_bump
-    push_to_git_remote
+    # increment_build_number
+    # upload_beta
+    # commit_version_bump
+    # push_to_git_remote
   end
 
   #hidden from lanes,list,docs
@@ -82,7 +82,7 @@ platform :ios do
     match(
       api_key: api_key,
       type: "appstore",
-      readonly: ENV[MATCH_FETCH_READ_ONLY_MODE]
+      readonly: ENV["MATCH_FETCH_READ_ONLY_MODE"]
     )
   end
 
