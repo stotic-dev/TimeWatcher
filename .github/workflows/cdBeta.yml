@@ -66,5 +66,5 @@ jobs:
           MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
           ENVIRONMENT: "CI"
-          MATCH_FETCH_READ_ONLY_MODE: "is_ci"
+          MATCH_FETCH_READ_ONLY_MODE: true
           SETUP_CI_PROVIDER: "travis"
