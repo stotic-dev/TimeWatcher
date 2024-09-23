@@ -39,6 +39,30 @@ Upload to TestFlight
 
 Upload ipa for TestFlight
 
+### ios match_force_appstore
+
+```sh
+[bundle exec] fastlane ios match_force_appstore
+```
+
+create appstore cert and profiles
+
+### ios fetch_appstore_profiles
+
+```sh
+[bundle exec] fastlane ios fetch_appstore_profiles
+```
+
+fetch appstore profiles and cert
+
+### ios delete_appstore_profiles
+
+```sh
+[bundle exec] fastlane ios delete_appstore_profiles
+```
+
+delete appstore profiles and cert
+
 ----
 
 This README.md is auto-generated and will be re-generated every time [_fastlane_](https://fastlane.tools) is run.
