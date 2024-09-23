@@ -7,3 +7,4 @@ output_name("TimeWatcher")  # the name of the ipa file
 include_bitcode(true)
 export_method("app-store")
 export_options("./secret/ExportOptions.plist")
+xcargs("-skipPackagePluginValidation")

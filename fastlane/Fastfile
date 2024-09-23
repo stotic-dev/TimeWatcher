@@ -33,10 +33,10 @@ platform :ios do
     scan
     fetch_appstore_profiles
     gym
-    # increment_build_number
-    # upload_beta
-    # commit_version_bump
-    # push_to_git_remote
+    increment_build_number
+    upload_beta
+    commit_version_bump
+    push_to_git_remote
   end
 
   #hidden from lanes,list,docs
