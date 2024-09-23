@@ -63,3 +63,6 @@ fastlane/test_output
 
 # secret files
 secret/*
+.env*
+!.env.skel
+GoogleService-Info*.plist

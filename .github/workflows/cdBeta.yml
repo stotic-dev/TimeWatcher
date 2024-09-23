@@ -7,12 +7,10 @@ on:
   workflow_dispatch:
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.app
+  DEVELOPER_DIR: /Applications/Xcode_16.app
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
-  SECRET_DIR: ./secret
-  EXPORT_OPTIONS_PLIST_FILE_NAME: ExportOptions.plist
 
 jobs:
   build:
@@ -26,6 +24,10 @@ jobs:
       # Xcodeの一覧出力
       - name: Show Xcode list
         run: ls /Applications | grep 'Xcode'
+
+      # Xcodeのバージョン指定
+      - name: Select Xcode version
+        run: sudo xcode-select -s $DEVELOPER_DIR
 
       # Xcodeのバージョン出力
       - name: Show Xcode version
@@ -53,16 +55,16 @@ jobs:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
-      # ipaファイル作成のためのSignning用のファイル配置
-      - name: Create ExportOptions Info
-        run: |
-          mkdir ${{ env.SECRET_DIR }}
-          echo ${{ secrets.EXPORT_OPTIONS_FILE_TEXT }} >"${{ env.SECRET_DIR }}/${{ env.EXPORT_OPTIONS_PLIST_FILE_NAME }}}"
       # TestFlight用にデプロイ
       - name: deploy
         run: set -o pipefail &&
           bundle exec fastlane beta --verbose
         env:
-          APP_CONNECT_API_ISSUER_ID: ${{ secrets.APP_CONNECT_API_ISSUER_ID }}
-          APP_CONNECT_API_KEY_ID: ${{ secrets.APP_CONNECT_API_KEY_ID }}
-          APP_CONNECT_API_PRIVATE_KEY: ${{ secrets.APP_CONNECT_API_PRIVATE_KEY }}
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
+          MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
+          FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          ENVIRONMENT: "CI"
+          MATCH_FETCH_READ_ONLY_MODE: "is_ci"
+          SETUP_CI_PROVIDER: "travis"
