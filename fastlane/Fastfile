@@ -16,7 +16,7 @@
 default_platform(:ios)
 
 before_all do |lane, options|
-  if lane.include?(:beta) && ENV[ENVIRONMENT] == "CI" then
+  if lane == :beta && ENV[ENVIRONMENT] == "CI"
     setup_ci(provider: ENV[SETUP_CI_PROVIDER])
   end
 end
