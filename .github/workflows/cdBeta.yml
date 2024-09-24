@@ -65,6 +65,7 @@ jobs:
           ASC_KEY_CONTENT: ${{ secrets.ASC_KEY_CONTENT }}
           MATCH_KEYCHAIN_PASSWORD: ${{ secrets.MATCH_KEYCHAIN_PASSWORD }}
           FASTLANE_USER: ${{ secrets.FASTLANE_USER }}
+          MATCH_GIT_TOKEN: ${{ secrets.MATCH_GITHUB_TOKEN }}
           ENVIRONMENT: "CI"
           MATCH_FETCH_READ_ONLY_MODE: true
           SETUP_CI_PROVIDER: "travis"
