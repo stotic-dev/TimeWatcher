@@ -6,5 +6,11 @@ output_directory("./.build")    # store the ipa in this folder
 output_name("TimeWatcher")  # the name of the ipa file
 include_bitcode(true)
 export_method("app-store")
-export_options("./secret/ExportOptions.plist")
 xcargs("-skipPackagePluginValidation")
+export_options({
+  method: "app-store",
+  provisioningProfiles: {
+      "taichi.satou.TimeWatcher" => "TimeWatcher_Distribution",
+      "taichi.satou.TimeWatcher.TimeWatcherWidget" => "TimeWatcher_Widget_Distribution"
+    }
+})

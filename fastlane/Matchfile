@@ -1,7 +1,9 @@
+app_identifier(["taichi.satou.TimeWatcher","taichi.satou.TimeWatcher.TimeWatcherWidget"])
 git_url("https://github.com/stotic-dev/TimeWatcherSecret.git")
 
 storage_mode("git")
 git_branch("main")
+clone_branch_directly(true)
 
 type("development") # The default type, can be: appstore, adhoc, enterprise or development
 
