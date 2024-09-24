@@ -87,14 +87,6 @@ platform :ios do
     )
   end
 
-  # GitHubアクセスのKey生成
-  def git_hub_ptk
-    username = ENV['GIT_HUB_USER_NAME']
-    personal_github_access_token = ENV["MATCH_GIT_BASIC_AUTHORIZATION"]
-    authorization_token_str = "#{username}:#{personal_github_access_token}"
-    return Base64.strict_encode64(authorization_token_str)
-  end
-
   desc "create appstore cert and profiles"
   lane :match_force_appstore do
     api_key = asc_api_key
@@ -110,7 +102,6 @@ platform :ios do
     api_key = asc_api_key
     match(
       api_key: api_key,
-      git_basic_authorization: git_hub_ptk,
       type: "appstore",
       readonly: ENV["MATCH_FETCH_READ_ONLY_MODE"]
     )
