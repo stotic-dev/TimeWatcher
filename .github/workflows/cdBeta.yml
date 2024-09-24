@@ -69,3 +69,4 @@ jobs:
           ENVIRONMENT: "CI"
           MATCH_FETCH_READ_ONLY_MODE: true
           SETUP_CI_PROVIDER: "travis"
+          GIT_HUB_USER_NAME: ${{ github.actor.name }}
