@@ -29,7 +29,15 @@ do test
 [bundle exec] fastlane ios beta
 ```
 
-Upload to TestFlight
+Upload App for TestFlight
+
+### ios release
+
+```sh
+[bundle exec] fastlane ios release
+```
+
+Upload App for release
 
 ### ios upload_beta
 
@@ -38,6 +46,14 @@ Upload to TestFlight
 ```
 
 Upload ipa for TestFlight
+
+### ios upload_release
+
+```sh
+[bundle exec] fastlane ios upload_release
+```
+
+Upload ipa for release
 
 ### ios match_force_appstore
 
