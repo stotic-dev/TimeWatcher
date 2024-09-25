@@ -10,7 +10,7 @@ xcargs("-skipPackagePluginValidation")
 export_options({
   method: "app-store",
   provisioningProfiles: {
-      "taichi.satou.TimeWatcher" => "TimeWatcher_Distribution",
-      "taichi.satou.TimeWatcher.TimeWatcherWidget" => "TimeWatcher_Widget_Distribution"
+      "taichi.satou.TimeWatcher" => "AppStore_taichi.satou.TimeWatcher",
+      "taichi.satou.TimeWatcher.TimeWatcherWidget" => "AppStore_taichi.satou.TimeWatcher.TimeWatcherWidget"
     }
 })
