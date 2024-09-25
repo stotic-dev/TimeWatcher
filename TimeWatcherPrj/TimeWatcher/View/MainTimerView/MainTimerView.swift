@@ -109,6 +109,7 @@ private extension MainTimerView {
         .frameButtonStyle(radius: actionButtonSize / 2)
         .shadow(radius: actionButtonShadowRadius,
                 y: actionButtonShadowY)
+        .accessibilityIdentifier("ActionButton_\(type.buttonTitle)")
     }
 }
 
