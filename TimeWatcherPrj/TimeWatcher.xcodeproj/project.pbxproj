@@ -157,6 +157,7 @@
 		BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModelTest.swift; sourceTree = "<group>"; };
 		BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
+		BCC86A8F2CA3DF9800878442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -251,6 +252,7 @@
 		BC3FCD632C913E2900F3AC29 /* TimeWatcher */ = {
 			isa = PBXGroup;
 			children = (
+				BCC86A8F2CA3DF9800878442 /* Info.plist */,
 				BC057EB42C92EDFC0030C275 /* Dependency */,
 				BC3FCD9D2C914E0300F3AC29 /* Utility */,
 				BC3FCDA92C9189BA00F3AC29 /* View */,
@@ -948,6 +950,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 56LYVN6DMF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeWatcher/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -986,6 +989,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 56LYVN6DMF;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeWatcher/Info.plist;
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
