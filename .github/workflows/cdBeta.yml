@@ -1,7 +1,7 @@
 name: CD_Beta_Time_Watcher
 
 on:
-  pull_request:
+  push:
     branches:
       - "release/beta/*"
 
