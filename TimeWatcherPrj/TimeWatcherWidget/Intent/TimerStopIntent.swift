@@ -7,10 +7,10 @@
 
 import AppIntents
 
-struct TimerStopIntent: AppIntent, TimerControlable {
+struct TimerStopIntent: LiveActivityIntent, TimerControlable {
     
     static var title: LocalizedStringResource = "Stop"
-    
+     
     private(set) var timeWatch: TimeWatch
     private(set) var liveActivityManager: LiveActivityManaging
     private(set) var dateDependency: DateDependency
