@@ -7,7 +7,7 @@
 
 import AppIntents
 
-struct TimerStartIntent: AppIntent, TimerControlable {
+struct TimerStartIntent: LiveActivityIntent, TimerControlable {
     
     static var title: LocalizedStringResource = "Start"
     
