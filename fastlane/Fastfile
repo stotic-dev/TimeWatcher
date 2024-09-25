@@ -41,11 +41,8 @@ platform :ios do
   lane :release do |options|
     scan # TestFlight前のビルド & テスト確認
     fetch_appstore_profiles # provisioning profileの取得
-    increment_build_number(xcodeproj: 'TimeWatcherPrj/TimeWatcher.xcodeproj') # ビルドバージョンの自動化
     gym # ipaファイル作成
-    # App Storeへのリリース申請
-    commit_version_bump
-    push_to_git_remote
+    upload_release　# App Storeへのリリース申請
   end
 
   desc "Upload ipa for TestFlight"
@@ -68,12 +65,7 @@ platform :ios do
   desc "Upload ipa for release"
   lane :upload_release do |options|
     asc_api_key
-    upload_to_app_store(
-      ipa: "./.build/TimeWatcher.ipa",
-      demo_account_required: false,
-      skip_waiting_for_build_processing: "true",
-      
-    )
+    upload_to_app_store
   end
 
   desc "Select Build Number"
