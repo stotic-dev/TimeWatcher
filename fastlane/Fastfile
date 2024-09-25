@@ -30,11 +30,11 @@ platform :ios do
 
   desc "Upload App for TestFlight"
   lane :beta do
-    scan # TestFlight前のビルド & テスト確認
+    # scan # TestFlight前のビルド & テスト確認
     fetch_appstore_profiles # provisioning profileの取得
     select_build_number # ビルドバージョンの自動化
     gym # ipaファイル作成
-    upload_beta # TestFlightの配信要求
+    # upload_beta # TestFlightの配信要求
   end
 
   desc "Upload App for release"
@@ -70,9 +70,10 @@ platform :ios do
 
   desc "Select Build Number"
   private_lane :select_build_number do |options|
+    nextBuildNumber = latest_testflight_build_number.to_f + 0.1
     increment_build_number(
       xcodeproj: 'TimeWatcherPrj/TimeWatcher.xcodeproj',
-      build_number: latest_testflight_build_number + 0.1
+      build_number: nextBuildNumber
     )
   end
 

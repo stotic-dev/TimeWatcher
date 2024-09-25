@@ -17,17 +17,36 @@ final class TimeWatcherUITests: XCTestCase {
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    
+    @MainActor
+    override func setUp() {
+        
+        super.setUp()
+        
+        continueAfterFailure = false
         let app = XCUIApplication()
+        setupSnapshot(app)
         app.launch()
-
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    }
+    
+    @MainActor
+    func testExsample() throws {
+        
+        let app = XCUIApplication()
+        snapshot("launch")
+        
+        app.buttons["ActionButton_Start"].tap()
+        snapshot("Start Timer")
+        
+        app.buttons["ActionButton_Stop"].tap()
+        snapshot("Stop Timer")
+        
+        // ホームボタン押下
+        XCUIDevice.shared.press(XCUIDevice.Button.home)
+        snapshot("Home Screen on LiveActivity")
+        
+        XCUIDevice.shared.perform(NSSelectorFromString("pressLockButton"))
+        snapshot("Lock Screen on LiveActivity")
     }
 
     func testLaunchPerformance() throws {
