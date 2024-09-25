@@ -59,8 +59,8 @@ Carthage/Build/
 
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots/**/*.png
 fastlane/test_output
+fastlane/screenshots.html
 
 # secret files
 secret/*
