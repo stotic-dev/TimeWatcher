@@ -19,8 +19,21 @@ struct MainTimerView: View {
     private let emergencyTextTopPadding: CGFloat = 20
     private let emergencyTextHorizontalPadding: CGFloat = 30
     private let actionButtonSpacing: CGFloat = 100
+    private let viewBottomPadding: CGFloat = 15
+    private let timerTextBottomPadding: CGFloat = 20
     
-    private let displayTextAreaHeight: CGFloat = 300
+    private var displayTextAreaHeight: CGFloat {
+        
+        print("isPortrait: \(ViewUtilities.isPortrait)")
+        if ViewUtilities.isPortrait {
+            
+            return 300
+        }
+        else {
+            
+            return .infinity
+        }
+    }
     private let actionButtonSize: CGFloat = 80
     
     private let displayTimeFontSize: CGFloat = 40
@@ -39,11 +52,15 @@ struct MainTimerView: View {
                     .ignoresSafeArea()
                 VStack(spacing: .zero) {
                     createTimerDisplayView()
+                        .frame(maxWidth: .infinity,
+                               maxHeight: displayTextAreaHeight)
+                    Spacer()
+                        .frame(height: timerTextBottomPadding)
                     Divider()
                     Spacer()
                         .frame(height: actionButtonTopPadding)
                     createTimerActionView()
-                    Spacer()
+                    Spacer(minLength: viewBottomPadding)
                 }
             }
         }
@@ -79,8 +96,6 @@ private extension MainTimerView {
                 }
             }
         }
-        .frame(maxWidth: .infinity,
-               maxHeight: displayTextAreaHeight)
     }
     
     func createTimerActionView() -> some View {
