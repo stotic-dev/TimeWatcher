@@ -21,19 +21,7 @@ struct MainTimerView: View {
     private let actionButtonSpacing: CGFloat = 100
     private let viewBottomPadding: CGFloat = 15
     private let timerTextBottomPadding: CGFloat = 20
-    
-    private var displayTextAreaHeight: CGFloat {
-        
-        print("isPortrait: \(ViewUtilities.isPortrait)")
-        if ViewUtilities.isPortrait {
-            
-            return 300
-        }
-        else {
-            
-            return .infinity
-        }
-    }
+
     private let actionButtonSize: CGFloat = 80
     
     private let displayTimeFontSize: CGFloat = 40
@@ -53,7 +41,7 @@ struct MainTimerView: View {
                 VStack(spacing: .zero) {
                     createTimerDisplayView()
                         .frame(maxWidth: .infinity,
-                               maxHeight: displayTextAreaHeight)
+                               maxHeight: .infinity)
                     Spacer()
                         .frame(height: timerTextBottomPadding)
                     Divider()
@@ -81,6 +69,7 @@ private extension MainTimerView {
         ZStack {
             TimerClockAnimationView(progress: viewModel.timeProgressPerMinute,
                                     size: .infinity)
+            .padding()
             VStack(spacing: .zero) {
                 Text(viewModel.currentTimeString)
                     .font(.system(size: displayTimeFontSize,
