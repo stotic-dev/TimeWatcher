@@ -47,10 +47,8 @@
 		BC57C0D92C991CF400786503 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */; };
 		BC57C0DB2C991D1000786503 /* TimerStopIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */; };
 		BC57C0DD2C991D5700786503 /* TimerControlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DC2C991D5700786503 /* TimerControlable.swift */; };
-		BC57C0DF2C991E6A00786503 /* TimerResetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */; };
 		BC57C0E02C99348E00786503 /* TimerStartIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */; };
 		BC57C0E12C99349100786503 /* TimerStopIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */; };
-		BC57C0E22C99349300786503 /* TimerResetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */; };
 		BC57C0E32C99349600786503 /* TimerControlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DC2C991D5700786503 /* TimerControlable.swift */; };
 		BC57C0E42C99411200786503 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */; };
 		BC57C0E72C99431000786503 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0E62C99431000786503 /* AppConstants.swift */; };
@@ -71,8 +69,6 @@
 		BC6E15B82C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
-		BCC86A912CA3E31500878442 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC86A902CA3E31500878442 /* ViewUtilities.swift */; };
-		BCC86A922CA3E31500878442 /* ViewUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC86A902CA3E31500878442 /* ViewUtilities.swift */; };
 		BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -149,7 +145,6 @@
 		BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartIntent.swift; sourceTree = "<group>"; };
 		BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopIntent.swift; sourceTree = "<group>"; };
 		BC57C0DC2C991D5700786503 /* TimerControlable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlable.swift; sourceTree = "<group>"; };
-		BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerResetIntent.swift; sourceTree = "<group>"; };
 		BC57C0E62C99431000786503 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		BC57C0EB2C996B9500786503 /* TimerStartIntentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartIntentTest.swift; sourceTree = "<group>"; };
 		BC57C0EE2C99C69900786503 /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
@@ -160,7 +155,6 @@
 		BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 		BCC86A8F2CA3DF9800878442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		BCC86A902CA3E31500878442 /* ViewUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtilities.swift; sourceTree = "<group>"; };
 		BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,7 +333,6 @@
 			isa = PBXGroup;
 			children = (
 				BC3FCDA22C91527100F3AC29 /* FrameButtonStyle.swift */,
-				BCC86A902CA3E31500878442 /* ViewUtilities.swift */,
 			);
 			path = ViewUtility;
 			sourceTree = "<group>";
@@ -413,7 +406,6 @@
 			children = (
 				BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */,
 				BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */,
-				BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */,
 				BC57C0DC2C991D5700786503 /* TimerControlable.swift */,
 			);
 			path = Intent;
@@ -644,13 +636,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC57C0E82C9947F900786503 /* AppConstants.swift in Sources */,
-				BC57C0DF2C991E6A00786503 /* TimerResetIntent.swift in Sources */,
 				BC57C0E42C99411200786503 /* Calendar+Extension.swift in Sources */,
 				BC057EC42C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift in Sources */,
 				BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */,
 				BC57C0D42C990E9500786503 /* LiveActivityManaging.swift in Sources */,
 				BC57C0D32C990DFE00786503 /* TimerStartIntent.swift in Sources */,
-				BCC86A912CA3E31500878442 /* ViewUtilities.swift in Sources */,
 				BC57C0E92C99480800786503 /* TimeInterval+Extension.swift in Sources */,
 				BC57C0D72C991C0500786503 /* DateDependency.swift in Sources */,
 				BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */,
@@ -691,12 +681,10 @@
 				BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */,
 				BC3FCDA32C91527100F3AC29 /* FrameButtonStyle.swift in Sources */,
 				BC57C0E02C99348E00786503 /* TimerStartIntent.swift in Sources */,
-				BCC86A922CA3E31500878442 /* ViewUtilities.swift in Sources */,
 				BC3FCD652C913E2900F3AC29 /* TimeWatcherApp.swift in Sources */,
 				BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */,
 				BC3FCD902C91408A00F3AC29 /* MainTimerViewModel.swift in Sources */,
 				BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */,
-				BC57C0E22C99349300786503 /* TimerResetIntent.swift in Sources */,
 				BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
