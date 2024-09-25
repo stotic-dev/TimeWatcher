@@ -3,14 +3,10 @@ name: CD_Beta_Time_Watcher
 on:
   pull_request:
     branches:
-      - "release/*"
-  workflow_dispatch:
+      - "release/beta/*"
 
 env:
   DEVELOPER_DIR: /Applications/Xcode_16.app
-  WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
-  TARGET_SCHEME_NAME: TimeWatcher
-  TARGET_TEST_PLAN_NAME: TimeWatcher
 
 jobs:
   build:
