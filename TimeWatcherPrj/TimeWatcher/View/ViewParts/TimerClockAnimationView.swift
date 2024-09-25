@@ -70,12 +70,10 @@ struct TimerClockAnimationView: View {
         .onChange(of: progress) { _, newValue in
             if floor(postProgress) != floor(newValue) {
                 withAnimation(.spring) {
-//                    print("withAnimation oldValue=\(postProgress), newValue=\(newValue)")
                     progressAngle += progressRotationAngle
                 }
             }
             else {
-//                print("oldValue=\(postProgress), newValue=\(newValue)")
                 progressAngle = .zero
             }
             postProgress = newValue
