@@ -32,11 +32,9 @@ platform :ios do
   lane :beta do
     scan # TestFlight前のビルド & テスト確認
     fetch_appstore_profiles # provisioning profileの取得
-    increment_build_number(xcodeproj: 'TimeWatcherPrj/TimeWatcher.xcodeproj') # ビルドバージョンの自動化
+    select_build_number # ビルドバージョンの自動化
     gym # ipaファイル作成
     upload_beta # TestFlightの配信要求
-    commit_version_bump
-    push_to_git_remote
   end
 
   desc "Upload App for release"
@@ -75,6 +73,14 @@ platform :ios do
       demo_account_required: false,
       skip_waiting_for_build_processing: "true",
       
+    )
+  end
+
+  desc "Select Build Number"
+  private_lane :select_build_number do |options|
+    increment_build_number(
+      xcodeproj: 'TimeWatcherPrj/TimeWatcher.xcodeproj',
+      build_number: latest_testflight_build_number + 0.1
     )
   end
 
