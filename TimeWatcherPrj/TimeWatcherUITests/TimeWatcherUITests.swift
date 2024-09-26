@@ -30,31 +30,19 @@ final class TimeWatcherUITests: XCTestCase {
     }
     
     @MainActor
-    func testExsample() throws {
+    func testExample() throws {
         
         let app = XCUIApplication()
-        snapshot("launch")
+        
+        // portraitにする
+        XCUIDevice.shared.orientation = .portrait
+        
+        snapshot("launch", timeWaitingForIdle: 1)
         
         app.buttons["ActionButton_Start"].tap()
-        snapshot("Start Timer")
+        snapshot("Start Timer", timeWaitingForIdle: 1)
         
         app.buttons["ActionButton_Stop"].tap()
-        snapshot("Stop Timer")
-        
-        // ホームボタン押下
-        XCUIDevice.shared.press(XCUIDevice.Button.home)
-        snapshot("Home Screen on LiveActivity")
-        
-        XCUIDevice.shared.perform(NSSelectorFromString("pressLockButton"))
-        snapshot("Lock Screen on LiveActivity")
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        snapshot("Stop Timer", timeWaitingForIdle: 1)
     }
 }
