@@ -66,10 +66,10 @@
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
 		BC6E15B52C9AF32F00D518AF /* (null) in Resources */ = {isa = PBXBuildFile; };
-		BC6E15B72C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */; };
-		BC6E15B82C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
+		BCCB029A2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */; };
+		BCCB029B2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */; };
 		BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -154,9 +154,9 @@
 		BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUrlKey.swift; sourceTree = "<group>"; };
 		BC57C0F62C9A8D1700786503 /* OpenUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModel.swift; sourceTree = "<group>"; };
 		BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModelTest.swift; sourceTree = "<group>"; };
-		BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
 		BCC86A8F2CA3DF9800878442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -258,7 +258,7 @@
 				BC3FCDAA2C9189CE00F3AC29 /* AppModel */,
 				BC3FCD6A2C913E2B00F3AC29 /* Preview Content */,
 				BC3FCDA02C91507900F3AC29 /* Asset.xcassets */,
-				BC6E15B62C9AF80000D518AF /* PrivacyInfo.xcprivacy */,
+				BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */,
 			);
 			path = TimeWatcher;
 			sourceTree = "<group>";
@@ -608,7 +608,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC6E15B82C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */,
+				BCCB029B2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */,
 				BC057EC82C9475930030C275 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,9 +618,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC6E15B52C9AF32F00D518AF /* (null) in Resources */,
-				BC6E15B72C9AF80000D518AF /* PrivacyInfo.xcprivacy in Resources */,
 				BC3FCDA12C91507900F3AC29 /* Asset.xcassets in Resources */,
 				BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */,
+				BCCB029A2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */,
 				BC3FCD6C2C913E2B00F3AC29 /* Preview Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
