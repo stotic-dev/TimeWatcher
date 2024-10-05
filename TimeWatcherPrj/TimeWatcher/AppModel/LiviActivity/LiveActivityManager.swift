@@ -6,8 +6,11 @@
 //
 
 import ActivityKit
+import Foundation
 
 actor LiveActivityManager: LiveActivityManaging {
+    
+    private static let terminateTimeout: TimeInterval = 3
     
     func start(attributes: TimeWatcherWidgetAttributes, state: TimeWatcherWidgetAttributes.ContentState) async throws {
         
@@ -38,6 +41,25 @@ actor LiveActivityManager: LiveActivityManaging {
         
         await activity.end(.init(state: activity.content.state, staleDate: nil),
                            dismissalPolicy: .immediate)
+    }
+    
+    /// 起動しているLiveActivityの終了
+    nonisolated func terminate() {
+        
+        let semaphore = DispatchSemaphore(value: 0)
+        
+        Task {
+            
+            for activity in Activity<TimeWatcherWidgetAttributes>.activities {
+                
+                await activity.end(nil, dismissalPolicy: .immediate)
+            }
+            
+            semaphore.signal()
+        }
+        
+        let result = semaphore.wait(timeout: .now() + Self.terminateTimeout)
+        logger.info("result: \(result)")
     }
 }
 

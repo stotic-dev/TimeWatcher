@@ -41,3 +41,4 @@ struct TimerResetIntent: AppIntent {
         return .result()
     }
 }
+

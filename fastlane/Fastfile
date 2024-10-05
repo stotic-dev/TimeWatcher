@@ -1,0 +1,121 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+before_all do |lane, options|
+  if [:beta,:release].include?(lane) && ENV["ENVIRONMENT"] == "CI"
+    setup_ci(provider: ENV["SETUP_CI_PROVIDER"])
+  end
+end
+
+platform :ios do
+
+  desc "do test"
+  lane :test do |options|
+    scan
+  end
+
+  desc "Upload App for TestFlight"
+  lane :beta do
+    scan # TestFlight前のビルド & テスト確認
+    fetch_appstore_profiles # provisioning profileの取得
+    select_build_number increment_number:0.1 # ビルドバージョンの自動化
+    gym # ipaファイル作成
+    upload_beta # TestFlightの配信要求
+  end
+
+  desc "Upload App for release"
+  lane :release do |options|
+    scan # TestFlight前のビルド & テスト確認
+    fetch_appstore_profiles # provisioning profileの取得
+    select_build_number increment_number:0.01 # ビルドバージョンの自動化
+    gym # ipaファイル作成
+    upload_release # App Storeへのリリース申請
+  end
+
+  desc "Upload ipa for TestFlight"
+  lane :upload_beta do |options|
+    asc_api_key
+    upload_to_testflight(
+      ipa: "./.build/TimeWatcher.ipa",
+      demo_account_required: false,
+      skip_waiting_for_build_processing: "true",
+      beta_app_review_info: {
+        contact_email: "taichis844@gmail.com",
+        contact_first_name: "Taichi",
+        contact_last_name: "Satou",
+        contact_phone: "080-9754-8211",
+        notes: "TimeWatcherの内部テスト"
+      }
+    )
+  end
+
+  desc "Upload ipa for release"
+  lane :upload_release do |options|
+    asc_api_key
+    upload_to_app_store
+  end
+
+  desc "Select Build Number"
+  private_lane :select_build_number do |options|
+    nextBuildNumber = latest_testflight_build_number.to_f + options[:increment_number].to_f
+    increment_build_number(
+      xcodeproj: 'TimeWatcherPrj/TimeWatcher.xcodeproj',
+      build_number: nextBuildNumber.floor(2)
+    )
+  end
+
+  def asc_api_key
+    app_store_connect_api_key(
+      key_id: ENV['ASC_KEY_ID'],
+      issuer_id: ENV['ASC_ISSUER_ID'],
+      key_content: ENV['ASC_KEY_CONTENT'],
+      is_key_content_base64: true
+    )
+  end
+
+  desc "create appstore cert and profiles"
+  lane :match_force_appstore do
+    api_key = asc_api_key
+    match(
+      api_key: api_key,
+      type: "appstore",
+      force: true
+    )
+  end
+
+  desc "fetch appstore profiles and cert"
+  lane :fetch_appstore_profiles do
+    api_key = asc_api_key
+    match(
+      api_key: api_key,
+      type: "appstore",
+      readonly: ENV["MATCH_FETCH_READ_ONLY_MODE"]
+    )
+  end
+
+  desc "delete appstore profiles and cert"
+  lane :delete_appstore_profiles do
+    api_key = asc_api_key
+    match_nuke(
+      api_key: api_key,
+      type: "appstore",
+    )
+  end
+end
+
+after_all do |lane, options|
+end
