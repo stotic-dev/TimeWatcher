@@ -1,0 +1,16 @@
+workspace("TimerWatcherWorkspace.xcworkspace")
+scheme("TimeWatcher")
+clean(true)
+configuration("Release")
+output_directory("./.build")    # store the ipa in this folder
+output_name("TimeWatcher")  # the name of the ipa file
+include_bitcode(true)
+export_method("app-store")
+xcargs("-skipPackagePluginValidation")
+export_options({
+  method: "app-store",
+  provisioningProfiles: {
+      "taichi.satou.TimeWatcher" => "AppStore_taichi.satou.TimeWatcher",
+      "taichi.satou.TimeWatcher.TimeWatcherWidget" => "AppStore_taichi.satou.TimeWatcher.TimeWatcherWidget"
+    }
+})

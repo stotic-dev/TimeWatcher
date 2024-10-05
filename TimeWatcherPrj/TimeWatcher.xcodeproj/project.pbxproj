@@ -32,10 +32,15 @@
 		BC3FCDAC2C918A4300F3AC29 /* TimeWatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAB2C918A4300F3AC29 /* TimeWatch.swift */; };
 		BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */; };
 		BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDB22C91DF8800F3AC29 /* Logger.swift */; };
+		BC4732632CA4387E00898352 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4732622CA4387E00898352 /* SnapshotHelper.swift */; };
 		BC4B66302C955B1B004C3EEF /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B662F2C955B1B004C3EEF /* LiveActivityManager.swift */; };
 		BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */; };
 		BC4B66332C959A72004C3EEF /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */; };
 		BC4B66352C95AF0F004C3EEF /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */; };
+		BC521DF02CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
+		BC521DF12CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
+		BC521DF22CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
+		BC521DF32CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
 		BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */; };
 		BC57C0D02C96A16000786503 /* LiveActivityManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */; };
 		BC57C0D32C990DFE00786503 /* TimerStartIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */; };
@@ -47,10 +52,8 @@
 		BC57C0D92C991CF400786503 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */; };
 		BC57C0DB2C991D1000786503 /* TimerStopIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */; };
 		BC57C0DD2C991D5700786503 /* TimerControlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DC2C991D5700786503 /* TimerControlable.swift */; };
-		BC57C0DF2C991E6A00786503 /* TimerResetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */; };
 		BC57C0E02C99348E00786503 /* TimerStartIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */; };
 		BC57C0E12C99349100786503 /* TimerStopIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */; };
-		BC57C0E22C99349300786503 /* TimerResetIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */; };
 		BC57C0E32C99349600786503 /* TimerControlable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0DC2C991D5700786503 /* TimerControlable.swift */; };
 		BC57C0E42C99411200786503 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */; };
 		BC57C0E72C99431000786503 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0E62C99431000786503 /* AppConstants.swift */; };
@@ -66,13 +69,12 @@
 		BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD922C91429900F3AC29 /* TimerStatus.swift */; };
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
-		BC6332F12C9BD892004FE8EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC6332F02C9BD892004FE8EC /* GoogleService-Info.plist */; };
-		BC6332F22C9BD892004FE8EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC6332F02C9BD892004FE8EC /* GoogleService-Info.plist */; };
-		BC6332F32C9BD892004FE8EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC6332F02C9BD892004FE8EC /* GoogleService-Info.plist */; };
-		BC6332F42C9BD892004FE8EC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC6332F02C9BD892004FE8EC /* GoogleService-Info.plist */; };
 		BC6332F72C9BF8BC004FE8EC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BC6332F62C9BF8BC004FE8EC /* FirebaseAnalytics */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
+		BCCB029A2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */; };
+		BCCB029B2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */; };
+		BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,15 +142,16 @@
 		BC3FCDAB2C918A4300F3AC29 /* TimeWatch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWatch.swift; sourceTree = "<group>"; };
 		BC3FCDAF2C91957500F3AC29 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		BC3FCDB22C91DF8800F3AC29 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		BC4732622CA4387E00898352 /* SnapshotHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		BC4B662F2C955B1B004C3EEF /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManagerMock.swift; sourceTree = "<group>"; };
 		BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManaging.swift; sourceTree = "<group>"; };
 		BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartIntent.swift; sourceTree = "<group>"; };
 		BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStopIntent.swift; sourceTree = "<group>"; };
 		BC57C0DC2C991D5700786503 /* TimerControlable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerControlable.swift; sourceTree = "<group>"; };
-		BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerResetIntent.swift; sourceTree = "<group>"; };
 		BC57C0E62C99431000786503 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		BC57C0EB2C996B9500786503 /* TimerStartIntentTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartIntentTest.swift; sourceTree = "<group>"; };
 		BC57C0EE2C99C69900786503 /* TestUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUtilities.swift; sourceTree = "<group>"; };
@@ -156,8 +159,10 @@
 		BC57C0F32C9A7A0200786503 /* WidgetUrlKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUrlKey.swift; sourceTree = "<group>"; };
 		BC57C0F62C9A8D1700786503 /* OpenUrlViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModel.swift; sourceTree = "<group>"; };
 		BC57C0FB2C9A938900786503 /* OpenUrlViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUrlViewModelTest.swift; sourceTree = "<group>"; };
-		BC6332F02C9BD892004FE8EC /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerClockAnimationView.swift; sourceTree = "<group>"; };
+		BCC86A8F2CA3DF9800878442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,13 +257,15 @@
 		BC3FCD632C913E2900F3AC29 /* TimeWatcher */ = {
 			isa = PBXGroup;
 			children = (
-				BC6332F02C9BD892004FE8EC /* GoogleService-Info.plist */,
+				BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */,
+				BCC86A8F2CA3DF9800878442 /* Info.plist */,
 				BC057EB42C92EDFC0030C275 /* Dependency */,
 				BC3FCD9D2C914E0300F3AC29 /* Utility */,
 				BC3FCDA92C9189BA00F3AC29 /* View */,
 				BC3FCDAA2C9189CE00F3AC29 /* AppModel */,
 				BC3FCD6A2C913E2B00F3AC29 /* Preview Content */,
 				BC3FCDA02C91507900F3AC29 /* Asset.xcassets */,
+				BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */,
 			);
 			path = TimeWatcher;
 			sourceTree = "<group>";
@@ -285,6 +292,7 @@
 		BC3FCD7E2C913E2B00F3AC29 /* TimeWatcherUITests */ = {
 			isa = PBXGroup;
 			children = (
+				BC4732612CA4385400898352 /* Fastlane */,
 				BC3FCD7F2C913E2C00F3AC29 /* TimeWatcherUITests.swift */,
 				BC3FCD812C913E2C00F3AC29 /* TimeWatcherUITestsLaunchTests.swift */,
 			);
@@ -345,6 +353,7 @@
 				BC4B662E2C955A40004C3EEF /* ViewParts */,
 				BCF25BC12C9AC369002133A4 /* RootView */,
 				BC3FCD8E2C913FCE00F3AC29 /* MainTimerView */,
+				BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -384,6 +393,14 @@
 			path = Logger;
 			sourceTree = "<group>";
 		};
+		BC4732612CA4385400898352 /* Fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				BC4732622CA4387E00898352 /* SnapshotHelper.swift */,
+			);
+			path = Fastlane;
+			sourceTree = "<group>";
+		};
 		BC4B662E2C955A40004C3EEF /* ViewParts */ = {
 			isa = PBXGroup;
 			children = (
@@ -407,7 +424,6 @@
 			children = (
 				BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */,
 				BC57C0DA2C991D1000786503 /* TimerStopIntent.swift */,
-				BC57C0DE2C991E6A00786503 /* TimerResetIntent.swift */,
 				BC57C0DC2C991D5700786503 /* TimerControlable.swift */,
 			);
 			path = Intent;
@@ -554,7 +570,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					BC057EBA2C94758F0030C275 = {
 						CreatedOnToolsVersion = 15.3;
@@ -602,8 +618,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCB029B2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */,
 				BC057EC82C9475930030C275 /* Assets.xcassets in Resources */,
-				BC6332F22C9BD892004FE8EC /* GoogleService-Info.plist in Resources */,
+				BC521DF22CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -612,8 +629,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC3FCDA12C91507900F3AC29 /* Asset.xcassets in Resources */,
+				BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */,
+				BC521DF32CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
+				BCCB029A2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */,
 				BC3FCD6C2C913E2B00F3AC29 /* Preview Assets.xcassets in Resources */,
-				BC6332F32C9BD892004FE8EC /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,7 +640,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC6332F42C9BD892004FE8EC /* GoogleService-Info.plist in Resources */,
+				BC521DF12CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +648,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC6332F12C9BD892004FE8EC /* GoogleService-Info.plist in Resources */,
+				BC521DF02CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,7 +689,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC57C0E82C9947F900786503 /* AppConstants.swift in Sources */,
-				BC57C0DF2C991E6A00786503 /* TimerResetIntent.swift in Sources */,
 				BC57C0E42C99411200786503 /* Calendar+Extension.swift in Sources */,
 				BC057EC42C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift in Sources */,
 				BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */,
@@ -720,7 +738,6 @@
 				BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */,
 				BC3FCD902C91408A00F3AC29 /* MainTimerViewModel.swift in Sources */,
 				BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */,
-				BC57C0E22C99349300786503 /* TimerResetIntent.swift in Sources */,
 				BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -743,6 +760,7 @@
 			files = (
 				BC3FCD822C913E2C00F3AC29 /* TimeWatcherUITestsLaunchTests.swift in Sources */,
 				BC3FCD802C913E2C00F3AC29 /* TimeWatcherUITests.swift in Sources */,
+				BC4732632CA4387E00898352 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,7 +806,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher.TimeWatcherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -801,6 +819,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -825,11 +844,11 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher.TimeWatcherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TimeWatcher_Widget_Distribution;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore taichi.satou.TimeWatcher.TimeWatcherWidget";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -838,6 +857,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -875,6 +895,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -901,6 +922,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -938,6 +960,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -957,15 +980,16 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		BC3FCD862C913E2C00F3AC29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -976,10 +1000,14 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeWatcher/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimeWatcher;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -987,23 +1015,28 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TimeWatcher_Dev;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
 		BC3FCD872C913E2C00F3AC29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1013,10 +1046,14 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TimeWatcher/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = TimeWatcher;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -1024,21 +1061,25 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = TimeWatcher_Distribution;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "match AppStore taichi.satou.TimeWatcher";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		BC3FCD892C913E2C00F3AC29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1058,7 +1099,6 @@
 		BC3FCD8A2C913E2C00F3AC29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1078,7 +1118,6 @@
 		BC3FCD8C2C913E2C00F3AC29 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 56LYVN6DMF;
@@ -1097,7 +1136,6 @@
 		BC3FCD8D2C913E2C00F3AC29 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 56LYVN6DMF;

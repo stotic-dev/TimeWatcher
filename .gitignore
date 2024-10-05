@@ -23,13 +23,14 @@ playground.xcworkspace
 Packages/
 Package.pins
 Package.resolved
+SourcePackages/
 # *.xcodeproj
 #
 # Xcode automatically generates this directory with a .xcworkspacedata file and xcuserdata
 # hence it is not needed unless you have added a package configuration file to your project
 .swiftpm
 
-.build/
+.build/*
 
 # CocoaPods
 #
@@ -58,8 +59,14 @@ Carthage/Build/
 
 fastlane/report.xml
 fastlane/Preview.html
-fastlane/screenshots/**/*.png
 fastlane/test_output
+fastlane/screenshots.html
 
 # firebase
 GoogleService-Info.plist
+
+# secret files
+secret/*
+.env*
+!.env.skel
+
