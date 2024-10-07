@@ -60,7 +60,7 @@ jobs:
       # GoogleService-Info.plistの復元
       - name: Decode GoogleService-Info.plist
         run: |
-          base64 -d ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_CONTENT }} > ${{ env.GOOGLE_SERVICE_INFO_PLIST_PATH }}
+          base64 -D ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_CONTENT }} -o ${{ env.GOOGLE_SERVICE_INFO_PLIST_PATH }}
 
       # ビルド
       - name: Xcode virify
