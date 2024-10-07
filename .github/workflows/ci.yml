@@ -11,6 +11,7 @@ env:
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
+  GOOGLE_SERVICE_INFO_PLIST_PATH: TimeWatcherPrj/TimeWatcher/GoogleService-Info.plist
 
 jobs:
   build:
@@ -55,6 +56,12 @@ jobs:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
+
+      # GoogleService-Info.plistの復元
+      - name: Decode GoogleService-Info.plist
+        run: |
+          base64 -d ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_CONTENT }} > ${{ env.GOOGLE_SERVICE_INFO_PLIST_PATH }}
+
       # ビルド
       - name: Xcode virify
         run: set -o pipefail &&
