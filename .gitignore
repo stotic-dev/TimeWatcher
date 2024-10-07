@@ -62,8 +62,11 @@ fastlane/Preview.html
 fastlane/test_output
 fastlane/screenshots.html
 
+# firebase
+GoogleService-Info.plist
+
 # secret files
 secret/*
 .env*
 !.env.skel
-GoogleService-Info*.plist
+

@@ -37,6 +37,10 @@
 		BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EC32C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift */; };
 		BC4B66332C959A72004C3EEF /* TimeInterval+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */; };
 		BC4B66352C95AF0F004C3EEF /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */; };
+		BC521DF02CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
+		BC521DF12CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
+		BC521DF22CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
+		BC521DF32CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */; };
 		BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */; };
 		BC57C0D02C96A16000786503 /* LiveActivityManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */; };
 		BC57C0D32C990DFE00786503 /* TimerStartIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */; };
@@ -65,11 +69,12 @@
 		BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD922C91429900F3AC29 /* TimerStatus.swift */; };
 		BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD942C9142BF00F3AC29 /* TimerActionType.swift */; };
 		BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCD9E2C914E2900F3AC29 /* ResourceAdapt.swift */; };
-		BC6E15B52C9AF32F00D518AF /* (null) in Resources */ = {isa = PBXBuildFile; };
+		BC6332F72C9BF8BC004FE8EC /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = BC6332F62C9BF8BC004FE8EC /* FirebaseAnalytics */; };
 		BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCB5B59D2C9529D700DB3D79 /* TimerClockAnimationView.swift */; };
 		BCCB029A2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */; };
 		BCCB029B2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = BCCB02992CA53D190064BA7F /* PrivacyInfo.xcprivacy */; };
+		BCEB52472CB12FE100B74486 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BCEB52462CB12FE100B74486 /* FirebaseCrashlytics */; };
 		BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCF46B802C9D6EDB006BAEAF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +147,7 @@
 		BC4B662F2C955B1B004C3EEF /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		BC4B66322C959A72004C3EEF /* TimeInterval+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extension.swift"; sourceTree = "<group>"; };
 		BC4B66342C95AF0E004C3EEF /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BC57C0C42C969AF300786503 /* LiveActivityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManagerMock.swift; sourceTree = "<group>"; };
 		BC57C0CF2C96A16000786503 /* LiveActivityManaging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManaging.swift; sourceTree = "<group>"; };
 		BC57C0D22C990DFE00786503 /* TimerStartIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStartIntent.swift; sourceTree = "<group>"; };
@@ -175,6 +181,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCEB52472CB12FE100B74486 /* FirebaseCrashlytics in Frameworks */,
+				BC6332F72C9BF8BC004FE8EC /* FirebaseAnalytics in Frameworks */,
 				BC3FCD9C2C914D9000F3AC29 /* TimeWatcherExternalResouce in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +259,7 @@
 		BC3FCD632C913E2900F3AC29 /* TimeWatcher */ = {
 			isa = PBXGroup;
 			children = (
+				BC521DEF2CB11D1A002B0D73 /* GoogleService-Info.plist */,
 				BCC86A8F2CA3DF9800878442 /* Info.plist */,
 				BC057EB42C92EDFC0030C275 /* Dependency */,
 				BC3FCD9D2C914E0300F3AC29 /* Utility */,
@@ -503,6 +512,7 @@
 				BC3FCD5E2C913E2900F3AC29 /* Frameworks */,
 				BC3FCD5F2C913E2900F3AC29 /* Resources */,
 				BC057ECD2C9475930030C275 /* Embed Foundation Extensions */,
+				BC6332F82C9BF9DD004FE8EC /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -512,6 +522,8 @@
 			name = TimeWatcher;
 			packageProductDependencies = (
 				BC3FCD9B2C914D9000F3AC29 /* TimeWatcherExternalResouce */,
+				BC6332F62C9BF8BC004FE8EC /* FirebaseAnalytics */,
+				BCEB52462CB12FE100B74486 /* FirebaseCrashlytics */,
 			);
 			productName = TimeWatcher;
 			productReference = BC3FCD612C913E2900F3AC29 /* TimeWatcher.app */;
@@ -590,6 +602,7 @@
 			mainGroup = BC3FCD582C913E2900F3AC29;
 			packageReferences = (
 				BC3FCD992C914C6F00F3AC29 /* XCLocalSwiftPackageReference "../TimeWatcherExternalResouce" */,
+				BC6332F52C9BF8BC004FE8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = BC3FCD622C913E2900F3AC29 /* Products */;
 			projectDirPath = "";
@@ -610,6 +623,7 @@
 			files = (
 				BCCB029B2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */,
 				BC057EC82C9475930030C275 /* Assets.xcassets in Resources */,
+				BC521DF22CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,9 +631,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC6E15B52C9AF32F00D518AF /* (null) in Resources */,
 				BC3FCDA12C91507900F3AC29 /* Asset.xcassets in Resources */,
 				BCF46B812C9D6EDB006BAEAF /* LaunchScreen.storyboard in Resources */,
+				BC521DF32CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 				BCCB029A2CA53D190064BA7F /* PrivacyInfo.xcprivacy in Resources */,
 				BC3FCD6C2C913E2B00F3AC29 /* Preview Assets.xcassets in Resources */,
 			);
@@ -629,6 +643,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC521DF12CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -636,10 +651,38 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC521DF02CB11D1A002B0D73 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BC6332F82C9BF9DD004FE8EC /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif (\"$CONFIGURATION\" == \"Release\") then\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BC057EB72C94758F0030C275 /* Sources */ = {
@@ -751,6 +794,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 56LYVN6DMF;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -765,6 +809,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher.TimeWatcherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -803,6 +848,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher.TimeWatcherWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -951,10 +997,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"TimeWatcher/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 56LYVN6DMF;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeWatcher/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TimeWatcher;
@@ -972,6 +1020,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1000,6 +1049,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 56LYVN6DMF;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TimeWatcher/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = TimeWatcher;
@@ -1017,6 +1067,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = taichi.satou.TimeWatcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1163,6 +1214,17 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		BC6332F52C9BF8BC004FE8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 11.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		BC057ED12C9478AE0030C275 /* TimeWatcherExternalResouce */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1171,6 +1233,16 @@
 		BC3FCD9B2C914D9000F3AC29 /* TimeWatcherExternalResouce */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TimeWatcherExternalResouce;
+		};
+		BC6332F62C9BF8BC004FE8EC /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6332F52C9BF8BC004FE8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		BCEB52462CB12FE100B74486 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC6332F52C9BF8BC004FE8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
