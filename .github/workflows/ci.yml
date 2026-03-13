@@ -7,19 +7,19 @@ on:
   workflow_dispatch:
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.app
+  DEVELOPER_DIR: /Applications/Xcode_16.2.app
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: macos-14
 
     steps:
       # チェックアウト(リポジトリからソースコードを取得)
       - name: Check Out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Xcodeの一覧出力
       - name: Show Xcode list
@@ -31,7 +31,7 @@ jobs:
 
       # Rudy製ライブラリのキャッシュ
       - name: Cache Gems
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -46,7 +46,7 @@ jobs:
 
       # SPMのライブラリのキャッシュ
       - name: Cache Swift Packages
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
@@ -60,7 +60,7 @@ jobs:
           -testPlan ${TARGET_TEST_PLAN_NAME}
           -sdk iphonesimulator
           -configuration Debug
-          -destination "platform=iOS Simulator,OS=17.2,name=iPhone 15 Pro"
+          -destination "platform=iOS Simulator,OS=18.2,name=iPhone 16 Pro"
           -clonedSourcePackagesDirPath SourcePackages
           -scmProvider xcode
           -allowProvisioningUpdates
