@@ -2,8 +2,6 @@ name: CI_Time_Watcher
 
 on:
   pull_request:
-    branches:
-      - "*"
   workflow_dispatch:
 
 env:
@@ -11,6 +9,7 @@ env:
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
+  GOOGLE_SERVICE_INFO_PLIST_PATH: TimeWatcherPrj/TimeWatcher/GoogleService-Info.plist
 
 jobs:
   build:
@@ -24,6 +23,10 @@ jobs:
       # Xcodeの一覧出力
       - name: Show Xcode list
         run: ls /Applications | grep 'Xcode'
+
+      # Xcodeのバージョン指定
+      - name: Select Xcode version
+        run: sudo xcode-select -s ${{ env.DEVELOPER_DIR }}
 
       # Xcodeのバージョン出力
       - name: Show Xcode version
@@ -51,6 +54,12 @@ jobs:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
           restore-keys: ${{ runner.os }}-spm-
+
+      # GoogleService-Info.plistの復元
+      - name: Decode GoogleService-Info.plist
+        run: |
+          echo ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_CONTENT }} | base64 -o ${{ env.GOOGLE_SERVICE_INFO_PLIST_PATH }} -D
+
       # ビルド
       - name: Xcode virify
         run: set -o pipefail &&
