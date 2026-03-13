@@ -7,14 +7,14 @@ on:
   workflow_dispatch:
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_15.0.app
+  DEVELOPER_DIR: /Applications/Xcode_16.2.app
   WORKSPACE_PATH: TimerWatcherWorkspace.xcworkspace
   TARGET_SCHEME_NAME: TimeWatcher
   TARGET_TEST_PLAN_NAME: TimeWatcher
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: macos-14
 
     steps:
       # チェックアウト(リポジトリからソースコードを取得)
@@ -60,7 +60,7 @@ jobs:
           -testPlan ${TARGET_TEST_PLAN_NAME}
           -sdk iphonesimulator
           -configuration Debug
-          -destination "platform=iOS Simulator,OS=17.2,name=iPhone 15 Pro"
+          -destination "platform=iOS Simulator,OS=18.2,name=iPhone 16 Pro"
           -clonedSourcePackagesDirPath SourcePackages
           -scmProvider xcode
           -allowProvisioningUpdates
