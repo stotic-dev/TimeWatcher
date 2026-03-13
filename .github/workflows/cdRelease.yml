@@ -6,7 +6,7 @@ on:
       - "release/store/*"
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.app
+  DEVELOPER_DIR: /Applications/Xcode_16.2.app
 
 jobs:
   build:
