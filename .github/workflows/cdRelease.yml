@@ -10,12 +10,12 @@ env:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-14
 
     steps:
       # チェックアウト(リポジトリからソースコードを取得)
       - name: Check Out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Xcodeの一覧出力
       - name: Show Xcode list
@@ -31,7 +31,7 @@ jobs:
 
       # Rudy製ライブラリのキャッシュ
       - name: Cache Gems
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -46,7 +46,7 @@ jobs:
 
       # SPMのライブラリのキャッシュ
       - name: Cache Swift Packages
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: SourcePackages
           key: ${{ runner.os }}-spm-${{ hashFiles('*.xcodeproj/project.xcworkspace/ xcshareddata/swiftpm/Package.resolved') }}
