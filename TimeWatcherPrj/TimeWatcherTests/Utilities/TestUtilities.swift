@@ -6,22 +6,22 @@
 //
 
 import Foundation
-@testable import TimeWatcher
+import TimeWatcherCore
 
 // MARK: - 便利メソッド
 
 struct TestUtilities {
-    
+
     static func getTimeLapse(base: Date, adding: [Calendar.Component: Int]) -> Date {
-        
+
         return adding.reduce(into: base) {
-            
+
             $0 = Calendar.current.date(byAdding: $1.key, value: $1.value, to: $0) ?? $0
         }
     }
-    
+
     static func getAddingMilliSec(_ millisec: TimeInterval, to: Date) -> Date {
-        
+
         let dateTime = to.timeIntervalSince1970MiliSec + millisec
         return Date(timeIntervalSince1970: dateTime / 1000)
     }
