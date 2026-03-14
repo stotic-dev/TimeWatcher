@@ -6,41 +6,42 @@
 //
 
 import AppIntents
+import TimeWatcherCore
 
 struct TimerStopIntent: LiveActivityIntent, TimerControlable {
-    
+
     static var title: LocalizedStringResource = "Stop"
-     
+
     private(set) var timeWatch: TimeWatch
     private(set) var liveActivityManager: LiveActivityManaging
     private(set) var dateDependency: DateDependency
-    
+
     @preconcurrency
     @MainActor
     init() {
-        
+
         self.timeWatch = TimeWatch.shared
         self.liveActivityManager = LiveActivityManager()
         self.dateDependency = DateDependency()
     }
-    
+
     @MainActor
     init(timeWatch: TimeWatch? = nil,
          liveActivityManager: LiveActivityManaging = LiveActivityManager(),
          dateDependency: DateDependency = DateDependency()) {
-        
+
         self.timeWatch = timeWatch ?? TimeWatch.shared
         self.liveActivityManager = liveActivityManager
         self.dateDependency = dateDependency
     }
-    
+
     @MainActor
     func perform() async throws -> some IntentResult {
-        
+
         try await updateLiveActivity(status: .stop)
-        
+
         timeWatch.stopTimer()
-        
+
         logger.info("Did stop timer.")
         return .result()
     }

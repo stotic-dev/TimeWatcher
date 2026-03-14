@@ -8,6 +8,9 @@
       location = "group:TimeWatcherExternalResouce">
    </FileRef>
    <FileRef
+      location = "group:LocalPackage">
+   </FileRef>
+   <FileRef
       location = "group:TimeWatcher.xctestplan">
    </FileRef>
 </Workspace>
