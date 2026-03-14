@@ -6,11 +6,11 @@ on:
       - "release/store/*"
 
 env:
-  DEVELOPER_DIR: /Applications/Xcode_16.app
+  DEVELOPER_DIR: /Applications/Xcode_16.4.app
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
       # チェックアウト(リポジトリからソースコードを取得)
