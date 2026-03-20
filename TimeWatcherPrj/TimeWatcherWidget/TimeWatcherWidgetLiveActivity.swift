@@ -12,57 +12,6 @@ import SwiftUI
 import TimeWatcherCore
 import TimeWatcherFeature
 
-// MARK: - TimeWatcherWidgetAttributes Definition
-
-struct TimeWatcherWidgetAttributes: ActivityAttributes {
-    
-    public struct ContentState: Codable, Hashable {
-        
-        init(timeLapse: TimeInterval, currentDate: Date, timeLapseString: String, timerStatus: TimerStatus) {
-            
-            let minusMilliSec = Calendar.current.date(byAdding: -timeLapse.milliSec,
-                                                      to: currentDate)
-            let startRangeDate = Calendar.current.date(byAdding: [
-                .hour: -timeLapse.hour,
-                .minute: -timeLapse.minute,
-                .second: -timeLapse.seconds
-            ],
-                                                       to: minusMilliSec)
-            let endRangeDate = Calendar.current.date(byAdding: .hour,
-                                                     value: AppConstants.maxDisplayTime,
-                                                     to: currentDate) ?? currentDate
-            
-            self.timeLapse = startRangeDate...endRangeDate
-            self.timeLapseString = timeLapseString
-            self.timerStatus = timerStatus
-        }
-        
-        init(timeLapse: ClosedRange<Date>, timeLapseString: String, timerStatus: TimerStatus) {
-            
-            self.timeLapse = timeLapse
-            self.timeLapseString = timeLapseString
-            self.timerStatus = timerStatus
-        }
-        
-        /// 経過時間
-        var timeLapse: ClosedRange<Date>
-        /// 経過時間の文字列
-        var timeLapseString: String
-        /// タイマーの状態
-        var timerStatus: TimerStatus
-        
-        var useableActions: [TimerActionType] {
-            
-            return timerStatus.useableActions
-        }
-        
-        var statusIcon: String {
-            
-            return timerStatus.icon
-        }
-    }
-}
-
 // MARK: - TimeWatcherWidgetLiveActivity Widget Definition
 
 struct TimeWatcherWidgetLiveActivity: Widget {
