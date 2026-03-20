@@ -1,5 +1,5 @@
 app_identifier(["taichi.satou.TimeWatcher","taichi.satou.TimeWatcher.TimeWatcherWidget"])
-git_url("https://github.com/stotic-dev/TimeWatcherSecret.git")
+git_url("git@github.com:stotic-dev/TimeWatcherSecret.git")
 
 storage_mode("git")
 
