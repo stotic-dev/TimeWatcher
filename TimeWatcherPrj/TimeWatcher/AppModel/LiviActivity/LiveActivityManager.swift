@@ -8,6 +8,7 @@
 import ActivityKit
 import Foundation
 import TimeWatcherCore
+import TimeWatcherFeature
 
 actor LiveActivityManager: LiveActivityManaging {
 

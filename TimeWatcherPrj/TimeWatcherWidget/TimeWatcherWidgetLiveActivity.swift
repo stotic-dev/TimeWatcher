@@ -9,6 +9,8 @@ import ActivityKit
 import AppIntents
 import WidgetKit
 import SwiftUI
+import TimeWatcherCore
+import TimeWatcherFeature
 
 // MARK: - TimeWatcherWidgetAttributes Definition
 
