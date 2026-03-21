@@ -35,6 +35,9 @@ SourcePackages/
 .swiftpm
 
 .build/*
+**/.build/
+.DS_Store
+**/.DS_Store
 
 # CocoaPods
 #

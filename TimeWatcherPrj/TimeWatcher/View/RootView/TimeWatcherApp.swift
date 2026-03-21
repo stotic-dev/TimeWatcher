@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import TimeWatcherCore
+import TimeWatcherFeature
 import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
@@ -18,9 +20,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        
+
         logger.info("[In]")
-        
+
         let liveActivityManager = LiveActivityManager()
         liveActivityManager.terminate()
     }
@@ -29,15 +31,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 @MainActor
 struct TimeWatcherApp: App {
-    
+
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
-    
+
     // Deep Linkで開かれた際の情報を持つViewModel
     private var openUrlViewModel = OpenUrlViewModel()
-    
+
     var body: some Scene {
         WindowGroup {
-            MainTimerView(viewModel: MainTimerViewModel())
+            MainTimerView(viewModel: MainTimerViewModel(liveActivityMgr: LiveActivityManager()))
                 .environmentObject(openUrlViewModel)
                 .onOpenURL { url in
                     logger.info("URL: \(url)")

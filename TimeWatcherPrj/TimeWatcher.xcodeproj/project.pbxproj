@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA00AA002C9000001000008A /* TimeWatcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C9000001000002A /* TimeWatcherCore */; };
+		AA00AA002C9000001000009A /* TimeWatcherFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C9000001000003A /* TimeWatcherFeature */; };
+		AA00AA002C900000100000AA /* TimeWatcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C9000001000004A /* TimeWatcherCore */; };
+		AA00AA002C900000100000EA /* TimeWatcherFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C900000100000FA /* TimeWatcherFeature */; };
+		AA00AA002C900000100000BA /* TimeWatcherCore in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C9000001000005A /* TimeWatcherCore */; };
+		AA00AA002C900000100000CA /* TimeWatcherFeature in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C9000001000006A /* TimeWatcherFeature */; };
+		AA00AA002C900000100000DA /* TimeWatcherTestSupport in Frameworks */ = {isa = PBXBuildFile; productRef = AA00AA002C9000001000007A /* TimeWatcherTestSupport */; };
 		BC04009A2C949BD3003558DB /* FrameButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3FCDA22C91527100F3AC29 /* FrameButtonStyle.swift */; };
 		BC057EB32C9280470030C275 /* MainTimerViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EB22C9280470030C275 /* MainTimerViewTest.swift */; };
 		BC057EB62C92EE0F0030C275 /* DateDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC057EB52C92EE0F0030C275 /* DateDependency.swift */; };
@@ -174,6 +181,8 @@
 				BC057EBF2C94758F0030C275 /* SwiftUI.framework in Frameworks */,
 				BC057ED22C9478AE0030C275 /* TimeWatcherExternalResouce in Frameworks */,
 				BC057EBD2C94758F0030C275 /* WidgetKit.framework in Frameworks */,
+				AA00AA002C900000100000AA /* TimeWatcherCore in Frameworks */,
+				AA00AA002C900000100000EA /* TimeWatcherFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +193,8 @@
 				BCEB52472CB12FE100B74486 /* FirebaseCrashlytics in Frameworks */,
 				BC6332F72C9BF8BC004FE8EC /* FirebaseAnalytics in Frameworks */,
 				BC3FCD9C2C914D9000F3AC29 /* TimeWatcherExternalResouce in Frameworks */,
+				AA00AA002C9000001000008A /* TimeWatcherCore in Frameworks */,
+				AA00AA002C9000001000009A /* TimeWatcherFeature in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +202,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA00AA002C900000100000BA /* TimeWatcherCore in Frameworks */,
+				AA00AA002C900000100000CA /* TimeWatcherFeature in Frameworks */,
+				AA00AA002C900000100000DA /* TimeWatcherTestSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +513,8 @@
 			name = TimeWatcherWidgetExtension;
 			packageProductDependencies = (
 				BC057ED12C9478AE0030C275 /* TimeWatcherExternalResouce */,
+				AA00AA002C9000001000004A /* TimeWatcherCore */,
+				AA00AA002C900000100000FA /* TimeWatcherFeature */,
 			);
 			productName = TimeWatcherWidgetExtension;
 			productReference = BC057EBB2C94758F0030C275 /* TimeWatcherWidgetExtension.appex */;
@@ -522,6 +538,8 @@
 			name = TimeWatcher;
 			packageProductDependencies = (
 				BC3FCD9B2C914D9000F3AC29 /* TimeWatcherExternalResouce */,
+				AA00AA002C9000001000002A /* TimeWatcherCore */,
+				AA00AA002C9000001000003A /* TimeWatcherFeature */,
 				BC6332F62C9BF8BC004FE8EC /* FirebaseAnalytics */,
 				BCEB52462CB12FE100B74486 /* FirebaseCrashlytics */,
 			);
@@ -543,6 +561,11 @@
 				BC3FCD732C913E2B00F3AC29 /* PBXTargetDependency */,
 			);
 			name = TimeWatcherTests;
+			packageProductDependencies = (
+				AA00AA002C9000001000005A /* TimeWatcherCore */,
+				AA00AA002C9000001000006A /* TimeWatcherFeature */,
+				AA00AA002C9000001000007A /* TimeWatcherTestSupport */,
+			);
 			productName = TimeWatcherTests;
 			productReference = BC3FCD712C913E2B00F3AC29 /* TimeWatcherTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -601,7 +624,7 @@
 			);
 			mainGroup = BC3FCD582C913E2900F3AC29;
 			packageReferences = (
-				BC3FCD992C914C6F00F3AC29 /* XCLocalSwiftPackageReference "../TimeWatcherExternalResouce" */,
+				AA00AA002C9000001000001A /* XCLocalSwiftPackageReference "../LocalPackage" */,
 				BC6332F52C9BF8BC004FE8EC /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = BC3FCD622C913E2900F3AC29 /* Products */;
@@ -689,26 +712,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC57C0E82C9947F900786503 /* AppConstants.swift in Sources */,
-				BC57C0E42C99411200786503 /* Calendar+Extension.swift in Sources */,
 				BC057EC42C94758F0030C275 /* TimeWatcherWidgetLiveActivity.swift in Sources */,
-				BC5D47082C947D8200C52820 /* TimerActionType.swift in Sources */,
-				BC57C0D42C990E9500786503 /* LiveActivityManaging.swift in Sources */,
 				BC57C0D32C990DFE00786503 /* TimerStartIntent.swift in Sources */,
-				BC57C0E92C99480800786503 /* TimeInterval+Extension.swift in Sources */,
-				BC57C0D72C991C0500786503 /* DateDependency.swift in Sources */,
-				BC5D47092C947E4B00C52820 /* ResourceAdapt.swift in Sources */,
-				BC57C0F52C9A801400786503 /* WidgetUrlKey.swift in Sources */,
-				BC04009A2C949BD3003558DB /* FrameButtonStyle.swift in Sources */,
-				BC57C0DD2C991D5700786503 /* TimerControlable.swift in Sources */,
 				BC057EC22C94758F0030C275 /* TimeWatcherWidgetBundle.swift in Sources */,
-				BC5D47072C947C8400C52820 /* TimerStatus.swift in Sources */,
-				BC57C0D82C991CCB00786503 /* Logger.swift in Sources */,
 				BC57C0D52C990EA100786503 /* LiveActivityManager.swift in Sources */,
 				BC57C0DB2C991D1000786503 /* TimerStopIntent.swift in Sources */,
-				BC57C0D92C991CF400786503 /* Date+Extension.swift in Sources */,
-				BCB5B59F2C952A7200DB3D79 /* TimerClockAnimationView.swift in Sources */,
-				BC57C0D62C991B3C00786503 /* TimeWatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,30 +724,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC3FCD9F2C914E2900F3AC29 /* ResourceAdapt.swift in Sources */,
-				BC57C0E12C99349100786503 /* TimerStopIntent.swift in Sources */,
-				BC057EB62C92EE0F0030C275 /* DateDependency.swift in Sources */,
-				BC57C0D02C96A16000786503 /* LiveActivityManaging.swift in Sources */,
-				BC57C0E72C99431000786503 /* AppConstants.swift in Sources */,
-				BC4B66332C959A72004C3EEF /* TimeInterval+Extension.swift in Sources */,
-				BC3FCD672C913E2900F3AC29 /* MainTimerView.swift in Sources */,
-				BC3FCDAC2C918A4300F3AC29 /* TimeWatch.swift in Sources */,
-				BC57C0F72C9A8D1700786503 /* OpenUrlViewModel.swift in Sources */,
-				BC57C0E32C99349600786503 /* TimerControlable.swift in Sources */,
-				BC4B66352C95AF0F004C3EEF /* Calendar+Extension.swift in Sources */,
-				BC57C0CE2C96A0E300786503 /* LiveActivityManagerMock.swift in Sources */,
-				BC4B66302C955B1B004C3EEF /* LiveActivityManager.swift in Sources */,
-				BC3FCD932C91429900F3AC29 /* TimerStatus.swift in Sources */,
-				BC57C0F42C9A7A0200786503 /* WidgetUrlKey.swift in Sources */,
-				BC3FCD952C9142BF00F3AC29 /* TimerActionType.swift in Sources */,
-				BC3FCDB32C91DF8800F3AC29 /* Logger.swift in Sources */,
-				BC3FCDA32C91527100F3AC29 /* FrameButtonStyle.swift in Sources */,
-				BC57C0E02C99348E00786503 /* TimerStartIntent.swift in Sources */,
 				BC3FCD652C913E2900F3AC29 /* TimeWatcherApp.swift in Sources */,
-				BC4B66312C955C40004C3EEF /* TimeWatcherWidgetLiveActivity.swift in Sources */,
-				BC3FCD902C91408A00F3AC29 /* MainTimerViewModel.swift in Sources */,
-				BCB5B59E2C9529D700DB3D79 /* TimerClockAnimationView.swift in Sources */,
-				BC3FCDB02C91957500F3AC29 /* Date+Extension.swift in Sources */,
+				BC4B66302C955B1B004C3EEF /* LiveActivityManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,6 +1194,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../TimeWatcherExternalResouce;
 		};
+		AA00AA002C9000001000001A /* XCLocalSwiftPackageReference "../LocalPackage" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../LocalPackage;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -1229,6 +1219,34 @@
 		BC3FCD9B2C914D9000F3AC29 /* TimeWatcherExternalResouce */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = TimeWatcherExternalResouce;
+		};
+		AA00AA002C9000001000002A /* TimeWatcherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherCore;
+		};
+		AA00AA002C9000001000003A /* TimeWatcherFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherFeature;
+		};
+		AA00AA002C9000001000004A /* TimeWatcherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherCore;
+		};
+		AA00AA002C900000100000FA /* TimeWatcherFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherFeature;
+		};
+		AA00AA002C9000001000005A /* TimeWatcherCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherCore;
+		};
+		AA00AA002C9000001000006A /* TimeWatcherFeature */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherFeature;
+		};
+		AA00AA002C9000001000007A /* TimeWatcherTestSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TimeWatcherTestSupport;
 		};
 		BC6332F62C9BF8BC004FE8EC /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
